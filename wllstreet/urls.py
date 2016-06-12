@@ -24,5 +24,5 @@ urlpatterns = [
     url(r'^home', views.home, name = 'home'),
     url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
     url(r'^register/', views.register, name = 'register'),
-    url(r'^success/$', views.registersuccess, name = 'success'),
+    url(r'^success/$', views.registersuccess, name = 'registersuccess'),
 ]
