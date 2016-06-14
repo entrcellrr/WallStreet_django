@@ -28,11 +28,11 @@ def register(request):
                 )
             userdetail=UserDetail.objects.create(
             name=form.cleaned_data['username'],
-            id=form.cleaned_data['number'],
+            id=number,
             email=form.cleaned_data['email'],
             branch=form.cleaned_data['branch'],
             college=form.cleaned_data['college'],
-            contact=form.cleaned_data['number'],
+            contact=form.cleaned_data['contact'],
                 )
     
             return HttpResponseRedirect('/success/')
@@ -52,7 +52,7 @@ def registersuccess(request):
         'registration/success.html',
         )
 
-
+@login_required
 def logout_page(request):
     logout(request)
     return HttpResponseRedirect('/')

@@ -12,7 +12,7 @@ class RegistrationForm(forms.Form):
 	branch = forms.RegexField(regex=r'^\w+$', widget=forms.TextInput(attrs=dict(required=True, max_length=30)), label=_("Branch"), error_messages={ 'invalid': _("This value must contain only letters, numbers and underscores.") })
 	password1 = forms.CharField(widget=forms.PasswordInput(attrs=dict(required=True, max_length=30, render_value=False)), label=_("Password"))
 	password2 = forms.CharField(widget=forms.PasswordInput(attrs=dict(required=True, max_length=30, render_value=False)), label=_("Password (again)"))
-	number=forms.RegexField(regex=r'^\w+$', widget=forms.TextInput(attrs=dict(required=True, max_length=30)), label=_("Contact"), error_messages={ 'invalid': _("This value must contain only letters, numbers and underscores.") })
+	contact=forms.RegexField(regex=r'^\w+$', widget=forms.TextInput(attrs=dict(required=True, max_length=30)), label=_("Contact"), error_messages={ 'invalid': _("This value must contain only letters, numbers and underscores.") })
 	def clean_username(self):
 		try:
 		    user = User.objects.get(username__iexact=self.cleaned_data['username'])
