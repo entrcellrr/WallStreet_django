@@ -28,8 +28,13 @@ def register(request):
                 )
             userdetail=UserDetail.objects.create(
             name=form.cleaned_data['username'],
-            id=number
+            id=form.cleaned_data['number'],
+            email=form.cleaned_data['email'],
+            branch=form.cleaned_data['branch'],
+            college=form.cleaned_data['college'],
+            contact=form.cleaned_data['number'],
                 )
+    
             return HttpResponseRedirect('/success/')
     else:
         form = RegistrationForm()
