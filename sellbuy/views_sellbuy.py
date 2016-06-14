@@ -9,17 +9,21 @@ from django.template import RequestContext
 from sellbuy.models import Share, ShareDetail
 from login.models import UserDetail
 # Create your views here.
-@csrf_protect
 @login_required
 def sellbuyhome(request):
-	queryset=Share.objects.all()
-	share=Share.objects.all()
 	user = UserDetail.objects.get(name=request.user)
+	if request.method == 'GET':
+		id = user.name
+		name = request.GET.get("branch")
+		qty = request.GET.get("QTY")
+		s = ShareDetail.objects.get(username = id)
+	    
+	queryset=Share.objects.all()
 	context_data={
 		"name":user.name,
 		"object_list":queryset,
-		"shares":share
 	}
 	return render_to_response(
-    	'sellbuy/transact.html',context_data
-        )
+   	    'sellbuy/transact.html',context_data
+     	)
+

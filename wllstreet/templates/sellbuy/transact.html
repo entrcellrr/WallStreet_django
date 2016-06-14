@@ -6,7 +6,7 @@
 
     <a href="/logout/">Logout</a>
     <a href="/transact/">sellbuy</a>
-  <form method="post" action=".">{% csrf_token %}
+  <form method="GET" action=".">
         <table border="0">
 			<tr>
 			<td><select name="branch" >
@@ -17,7 +17,7 @@
 			</td>
 			</tr>-->
             <tr>
-                <td> QTY : <input type ="number" name = "QTY" min = 0> </td>>
+                <td> QTY : <input type ="number" name = "QTY" min = 0> </td>
             </tr>
         </table>
         <input type="submit" value="Update" />

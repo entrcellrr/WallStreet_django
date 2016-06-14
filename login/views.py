@@ -60,10 +60,9 @@ def logout_page(request):
 @login_required
 def home(request):
     user = UserDetail.objects.get(name=request.user)
-    id = user.id
-    dict = {'name':request.user}
+    name = user.name
 
     return render_to_response(
         'login/home.html',
-        {'dict': dict}
+        {'name': name}
         )
