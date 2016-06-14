@@ -3,3 +3,14 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class UserDetail(models.Model):
+
+	id=models.PositiveSmallIntegerField(primary_key='True')
+	name=models.CharField(max_length=120,blank=True,null=True)
+	college=models.CharField(max_length=120,blank=True,null=True)
+	branch=models.CharField(max_length=120,blank=True,null=True)
+	email=models.CharField(max_length=120,blank=True,null=True)
+	contact=models.DecimalField(max_digits=11,decimal_places=0,blank=True,null=True)
+
+	def __str__(self):
+		return self.name

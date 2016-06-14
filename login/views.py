@@ -6,10 +6,16 @@ from django.shortcuts import render_to_response, render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from sellbuy.models import ShareDetail
+from .models import UserDetail
 @csrf_protect
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
+        no = ShareDetail.objects.count()
+        if no == None:
+            number= 1
+        else:
+            number= no + 1
         if form.is_valid():
             user = User.objects.create_user(
             username=form.cleaned_data['username'],
@@ -18,6 +24,11 @@ def register(request):
             )
             sharedetail=ShareDetail.objects.create(
             username=form.cleaned_data['username'],
+            id=number
+                )
+            userdetail=UserDetail.objects.create(
+            name=form.cleaned_data['username'],
+            id=number
                 )
             return HttpResponseRedirect('/success/')
     else:
