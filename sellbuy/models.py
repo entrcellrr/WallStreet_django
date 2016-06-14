@@ -18,7 +18,7 @@ class ShareDetail(models.Model):
 	id=models.PositiveSmallIntegerField(primary_key='True')
 	username=models.CharField(max_length=120,blank=True,null=True)
 	amazon=models.PositiveSmallIntegerField(default=0)
-	google=models.PositiveSmallIntegerField(default=0)
+	Google=models.PositiveSmallIntegerField(default=0)
 	facebook=models.PositiveSmallIntegerField(default=0)
 	share1=models.PositiveSmallIntegerField(default=0)
 	share2=models.PositiveSmallIntegerField(default=0)

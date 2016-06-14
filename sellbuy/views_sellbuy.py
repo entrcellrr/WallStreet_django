@@ -12,12 +12,18 @@ from login.models import UserDetail
 @login_required
 def sellbuyhome(request):
 	user = UserDetail.objects.get(name=request.user)
-	if request.method == 'GET':
-		id = user.name
-		name = request.GET.get("branch")
-		qty = request.GET.get("QTY")
-		s = ShareDetail.objects.get(username = id)
-	    
+	id = user.name
+	attr = request.GET.get("branch")
+	model = ShareDetail.objects.get(username=id)
+	if attr is not None:
+		qty2 = int(request.GET.get("QTY"))
+		qty1 = getattr(model, attr)
+		if request.GET.get("sell") == 'SELL':
+			if qty2 > qty1:
+				qty2 = qty1
+			qty2 = -qty2
+		setattr(model, attr, qty1+qty2)
+		model.save()
 	queryset=Share.objects.all()
 	context_data={
 		"name":user.name,
@@ -26,4 +32,3 @@ def sellbuyhome(request):
 	return render_to_response(
    	    'sellbuy/transact.html',context_data
      	)
-
