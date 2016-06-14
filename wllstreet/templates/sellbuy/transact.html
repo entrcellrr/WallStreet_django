@@ -10,10 +10,9 @@
         <table border="0">
 			<tr>
 			<td><select name="branch" >
-				<OPTION value>Select your branch</OPTION>
-				<option>ECommerce</option>
-				<OPTION>Sports</OPTION>
-				<OPTION>Electronics</OPTION>
+				{% for obj in object_list %}	
+				<OPTION>{{obj.name}}</OPTION>
+{% endfor %}
 				</select>
 			</td>
 			</tr>-->
