@@ -15,12 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from login import views
 
+from login import views
+from sellbuy import views_sellbuy
 urlpatterns = [
     url(r'^$', 'django.contrib.auth.views.login'),
     url(r'^admin/', admin.site.urls),
     url(r'^logout/$', views.logout_page, name = 'logout_page'),
+    url(r'^transact/$',views_sellbuy.sellbuyhome, name = 'transact'),
     url(r'^home', views.home, name = 'home'),
     url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
     url(r'^register/', views.register, name = 'register'),

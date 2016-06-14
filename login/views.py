@@ -56,10 +56,14 @@ def registersuccess(request):
 def logout_page(request):
     logout(request)
     return HttpResponseRedirect('/')
- 
+
 @login_required
 def home(request):
+    user = UserDetail.objects.get(name=request.user)
+    id = user.id
+    dict = {'name':request.user}
+
     return render_to_response(
-    'login/home.html',
-    { 'user': request.user }
-    )
+        'login/home.html',
+        {'dict': dict}
+        )
