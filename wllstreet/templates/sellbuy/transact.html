@@ -2,9 +2,23 @@
 
 {% block content %}
 
-    <p>Welcome {{ dict.id }} !!!</p>
+    <p>Welcome {{ id }} !!!</p>
 
     <a href="/logout/">Logout</a>
     <a href="/transact/">sellbuy</a>
-
+  <form method="post" action=".">{% csrf_token %}
+        <table border="0">
+			<tr>
+			<td><select name="branch" >
+				<OPTION value>Select your branch</OPTION>
+				<option>ECommerce</option>
+				<OPTION>Sports</OPTION>
+				<OPTION>Electronics</OPTION>
+				</select>
+			</td>
+			</tr>-->
+        </table>
+        <input type="submit" value="Login" />
+        <input type="hidden" name="next" value="/home" />
+    </form>
 {% endblock %}

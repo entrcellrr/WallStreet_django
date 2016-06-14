@@ -8,15 +8,15 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from sellbuy.models import ShareDetail
 from login.models import UserDetail
-# Create your views here.@login_required
+# Create your views here.
 @csrf_protect
 @login_required
 def sellbuyhome(request):
-    user = UserDetail.objects.get(name=request.user)
-    id = user.id
-    dict = {'id':id}
-
-    return render_to_response(
-        'sellbuy/transact.html',
-        {'dict': dict}
+	#listnames=UserDetail.objects.all().values_list('name')
+	user = UserDetail.objects.get(name=request.user)
+	context_data={
+	"id":user.id
+	}
+	return render_to_response(
+    	'sellbuy/transact.html',context_data
         )
