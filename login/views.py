@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render_to_response, render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
- 
+from sellbuy.models import ShareDetail
 @csrf_protect
 def register(request):
     if request.method == 'POST':
@@ -16,6 +16,9 @@ def register(request):
             password=form.cleaned_data['password1'],
             email=form.cleaned_data['email']
             )
+            sharedetail=ShareDetail.objects.create(
+            username=form.cleaned_data['username'],
+                )
             return HttpResponseRedirect('/success/')
     else:
         form = RegistrationForm()

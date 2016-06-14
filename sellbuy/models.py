@@ -14,7 +14,14 @@ class Share(models.Model):
         return self.name
 
 class ShareDetail(models.Model):
-	name=models.CharField(max_length=120,blank=True,null=True)
+	def number():
+		no = ShareDetail.objects.count()
+		if no == None:
+			return 1
+		else:
+			return no + 1
+	id=models.PositiveSmallIntegerField(primary_key='True',default=number)
+	username=models.CharField(max_length=120,blank=True,null=True)
 	amazon=models.PositiveSmallIntegerField(default=0)
 	google=models.PositiveSmallIntegerField(default=0)
 	facebook=models.PositiveSmallIntegerField(default=0)
@@ -39,4 +46,4 @@ class ShareDetail(models.Model):
 	share19=models.PositiveSmallIntegerField(default=0)
 	share20=models.PositiveSmallIntegerField(default=0)
 	def __str__(self):
-		return self.name
+		return self.username
