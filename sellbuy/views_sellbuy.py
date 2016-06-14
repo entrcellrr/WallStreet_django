@@ -16,7 +16,7 @@ def sellbuyhome(request):
 	share=Share.objects.all()
 	user = UserDetail.objects.get(name=request.user)
 	context_data={
-		"id":user.id,
+		"name":user.name,
 		"object_list":queryset,
 		"shares":share
 	}
