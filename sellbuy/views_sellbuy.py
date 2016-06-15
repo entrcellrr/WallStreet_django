@@ -14,6 +14,7 @@ def sellbuyhome(request):
 	user = UserDetail.objects.get(name=request.user)
 	id = user.name
 	attr = request.GET.get("branch")
+	attr_filter=request.GET.get("ShareDescrib")
 	model = ShareDetail.objects.get(username=id)
 	if attr is not None:
 		qty2 = int(request.GET.get("QTY"))
@@ -25,9 +26,11 @@ def sellbuyhome(request):
 		setattr(model, attr, qty1+qty2)
 		model.save()
 	queryset=Share.objects.all()
+	flshare=Share.objects.filter(describ=attr_filter)
 	context_data={
 		"name":user.name,
-		"object_list":queryset,
+		"describ_list":queryset,
+		"share_filtered":flshare
 	}
 	return render_to_response(
    	    'sellbuy/transact.html',context_data

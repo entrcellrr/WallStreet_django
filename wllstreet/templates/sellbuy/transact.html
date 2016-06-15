@@ -9,8 +9,21 @@
   <form method="GET" action=".">
         <table border="0">
 			<tr>
+
+            <td><select name="ShareDescrib" onchange="this.form.submit()">
+                <OPTION value>all</OPTION>
+                {% for obj in describ_list %}    
+                <OPTION>{{obj.describ}}</OPTION>
+                {% endfor %}
+                </select>
+            </td> </tr>
+        </table>
+    </form>
+              <form method="GET" action=".">
+        <table border="0">
+            <tr>
 			<td><select name="branch" >
-				{% for obj in object_list %}	
+				{% for obj in share_filtered %}	
 				<OPTION>{{obj.name}}</OPTION>
 {% endfor %}
 				</select>
