@@ -10,8 +10,8 @@
         <table border="0">
 			<tr>
 
-            <td><select name="ShareDescrib" onchange="this.form.submit()">
-                <OPTION value>all</OPTION>
+            <td><select name="ShareDescrib" onchange="this.form.submit() ">
+                <OPTION value>any</OPTION>
                 {% for obj in describ_list %}    
                 <OPTION>{{obj.describ}}</OPTION>
                 {% endfor %}
@@ -22,7 +22,7 @@
               <form method="GET" action=".">
         <table border="0">
             <tr>
-			<td><select name="branch" >
+			<td><select name="branch" onchange="this.form.submit">
 				{% for obj in share_filtered %}	
 				<OPTION>{{obj.name}}</OPTION>
 {% endfor %}

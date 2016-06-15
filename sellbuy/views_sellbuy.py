@@ -12,11 +12,12 @@ from login.models import UserDetail
 @login_required
 def sellbuyhome(request):
 	user = UserDetail.objects.get(name=request.user)
+	shares = Share.objects.all()
 	id = user.name
-	attr = request.GET.get("branch")
 	attr_filter=request.GET.get("ShareDescrib")
-	model = ShareDetail.objects.get(username=id)
+	attr = request.GET.get("branch")
 	if attr is not None:
+		model = ShareDetail.objects.get(username=id)
 		qty2 = int(request.GET.get("QTY"))
 		qty1 = getattr(model, attr)
 		if request.GET.get("sell") == 'SELL':
@@ -27,11 +28,22 @@ def sellbuyhome(request):
 		model.save()
 	queryset=Share.objects.all()
 	flshare=Share.objects.filter(describ=attr_filter)
+	flshare1=queryset 
 	context_data={
 		"name":user.name,
 		"describ_list":queryset,
 		"share_filtered":flshare
 	}
-	return render_to_response(
-   	    'sellbuy/transact.html',context_data
-     	)
+	context_default={
+		"name":user.name,
+		"describ_list":queryset,
+		"share_filtered":flshare1
+	}
+	if attr_filter is not None:
+		return render_to_response(
+   	    	'sellbuy/transact.html',context_data
+     		)
+	else:
+		return render_to_response(
+			'sellbuy/transact.html',context_default
+			)
