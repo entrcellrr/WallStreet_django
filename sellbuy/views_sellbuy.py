@@ -17,13 +17,18 @@ def sellbuyhome(request):
 		Desc = request.POST.get("ShareDescrib")
 		name_return = request.POST.get("ShareName")
 		#Desc=form.cleaned_data['ShareDescrib']
+		qty = ShareDetail.objects.values_list(str(name_return)).filter(username=request.user)
+		print qty[0][0]
+
 	else:
 
 		Desc='abd'
 		name_return=None
 	form = ListForm(None, SDesc=Desc, Sname = name_return)
+	#user = UserDetail.objects.all()
+	#current_shareDetail=ShareDetail.objects.get(username=request.user)
+	#current_shareQTY = ShareDetail.objects.filter(**{field_name: name_return})
 	
-
 	variables = RequestContext(request,{'form':form})
 	return render_to_response(
    	    'sellbuy/transact.html',variables,
