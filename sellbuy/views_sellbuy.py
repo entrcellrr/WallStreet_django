@@ -13,9 +13,14 @@ from .forms import ListForm
 @login_required
 def sellbuyhome(request):
 	
-	
-	form = ListForm()
+	if request.method == 'POST':
+		Desc = request.POST.get("ShareDescrib")
+		#Desc=form.cleaned_data['ShareDescrib']
+	else:
 
+		Desc='abd'
+	form = ListForm(request.POST or None, SDesc=Desc)
+	
 
 	variables = RequestContext(request,{'form':form})
 	return render_to_response(

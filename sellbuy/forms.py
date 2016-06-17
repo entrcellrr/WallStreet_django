@@ -11,6 +11,8 @@ class ShareForm(forms.ModelForm):
 class ListForm(forms.Form):
     def __init__(self,*args,**kwargs):
 
+        self.Desc = kwargs.pop('SDesc')
+
         super(ListForm,self).__init__(*args,**kwargs)
 
         
@@ -20,7 +22,7 @@ class ListForm(forms.Form):
         choices=[(o) for o in queryset])
         
         for i in range(0,int(queryset.count())):
-            if self.fields['ShareDescrib'].choices[i][0]=='abd':
+            if self.fields['ShareDescrib'].choices[i][0]==self.Desc:
                 self.initial['ShareDescrib'] = self.fields['ShareDescrib'].choices[i][0]
 ###################################################
 #    ShareDescrib,initial={'ab': 'ab'}
