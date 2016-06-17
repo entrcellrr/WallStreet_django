@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django import forms
-from .models import Share
 from sellbuy.models import Share, ShareDetail
 from login.models import UserDetail
 
@@ -19,8 +18,10 @@ class ListForm(forms.Form):
         self.fields['ShareDescrib'] = forms.ChoiceField(widget=forms.Select(attrs={'onChange':'this.form.submit()'}),
         required=True,
         choices=[(o) for o in queryset])
-
-        self.initial['ShareDescrib'] = self.fields['ShareDescrib'].choices[1][1]
+        
+        for i in range(0,int(queryset.count())):
+            if self.fields['ShareDescrib'].choices[i][0]=='abd':
+                self.initial['ShareDescrib'] = self.fields['ShareDescrib'].choices[i][0]
 ###################################################
 #    ShareDescrib,initial={'ab': 'ab'}
 
