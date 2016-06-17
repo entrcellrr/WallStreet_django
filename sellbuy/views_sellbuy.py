@@ -15,9 +15,11 @@ def sellbuyhome(request):
 	
 	
 	form = ListForm()
-	variables = RequestContext(request,{
-    	'form':form
-    	})
+
+
+	variables = RequestContext(request,{'form':form})
 	return render_to_response(
    	    'sellbuy/transact.html',variables,
      	)
+
+

@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<form method="Post" action=".">{% csrf_token %}
     <p>Welcome {{ form.as_table }} !!!</p>
-
+</form>
     <a href="/logout/">Logout</a>
     <a href="/transact/">sellbuy</a>
   <form method="GET" action=".">
