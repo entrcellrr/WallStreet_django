@@ -9,6 +9,8 @@ class ShareForm(forms.ModelForm):
         model=Share
         fields=['name','describ','currentprice']
 
+
+
 class ListForm(forms.Form):
     def __init__(self,*args,**kwargs):
 
@@ -39,7 +41,12 @@ class ListForm(forms.Form):
         if self.Sname is not None:
             for i in range(0,int(queryshares.count())):
                 if self.fields['ShareName'].choices[i][0]==self.Sname:
-                    self.initial['ShareName'] = self.fields['ShareName'].choices[i][0]
+                    self.initial['ShareName'] = self.fields['ShareName'].choices[i][0]  
+###################################################
+#    ShareDescrib,initial={'ab': 'ab'}
+class Form_Calculated(forms.Form):
+    QTY=forms.RegexField(regex=r'^\w+$', widget=forms.TextInput(attrs={'required':True, 'max_length':30}), label=("QTY"), error_messages={ 'invalid': ("This value must contain only letters, numbers and underscores.") })    
+    current_price = forms.CharField(required=True)   
 ###################################################
 #    ShareDescrib,initial={'ab': 'ab'}
 

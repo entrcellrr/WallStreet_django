@@ -5,12 +5,11 @@
     <p>Welcome {{ name }}</p>
     <p>{{ form.as_table }} !!!</p>
     
-    {{share}}
+ 
 </form>
-<table border=3>
-        
-    <tr><td><p>Quntatity</p></td> <td><p>{{qty}}/p></td></tr>
-    <tr><td><p>Current Price</p></td> <td><p>{{price}}</p></td></tr>
+<table border=2>
+       {{share}}    
+    {{form_cal.as_table}}
 </table>
     <a href="/logout/">Logout</a>
     <a href="/transact/">sellbuy</a>

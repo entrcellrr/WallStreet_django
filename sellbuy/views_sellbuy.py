@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from sellbuy.models import Share, ShareDetail
 from login.models import UserDetail
-from .forms import ListForm
+from .forms import ListForm,Form_Calculated
 # Create your views here.
 @login_required
 def sellbuyhome(request):
@@ -25,7 +25,7 @@ def sellbuyhome(request):
 		else:
 			name_return = ' - '
 			qtyint = ' - '
-			crrntprice='-'
+			crrntprice = '-'
 	else:
 
 		Desc='All'
@@ -33,8 +33,10 @@ def sellbuyhome(request):
 		qtyint = ' - '
 		crrntprice='-'
 	form = ListForm(None, SDesc=Desc, Sname = name_return)
+	form_cal=Form_Calculated()
 	variables = RequestContext(request,{
-		'form':form, 
+		'form':form,
+		'form_cal':form_cal ,
 		'name':request.user, 
 		'qty':qtyint,
 		'share':name_return,
