@@ -15,12 +15,10 @@ def sellbuyhome(request):
 	
 	if request.method == 'POST':
 		Desc = request.POST.get("ShareDescrib")
-		
 		name_return = request.POST.get("ShareName")
 	else:
 		Desc='All'
 		name_return = 'share1'
-
 	form = ListForm(None, SDesc=Desc, Sname = name_return,UserName=request.user)
 	variables = RequestContext(request,{
 		'form':form,
