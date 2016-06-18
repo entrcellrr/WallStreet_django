@@ -10,12 +10,17 @@
 <table border=2>
     {{form_cal.as_table}}
 </table>
+<br>
+<br>
     <a href="/logout/">Logout</a>
     <a href="/transact/">sellbuy</a>
+    <br>
+    <br>
   <form method="GET" action=".">
  
         <input type="submit" value="BUY" />
         <input type="submit" value="SELL" name = "sell"/>
         <input type="hidden" name="next" value="/home" />
     </form>
+    <br>
 {% endblock %}
