@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from sellbuy.models import Share, ShareDetail
 from login.models import UserDetail
-from .forms import ListForm,Form_Calculated
+from .forms import ListForm#,Form_Calculated
 # Create your views here.
 @login_required
 def sellbuyhome(request):
@@ -17,30 +17,17 @@ def sellbuyhome(request):
 		Desc = request.POST.get("ShareDescrib")
 		
 		name_return = request.POST.get("ShareName")
-		price=Share.objects.get(name=name_return)
-		if Desc==price.describ or Desc=='All':
-			crrntprice=price.currentprice
-			qty = ShareDetail.objects.values_list(str(name_return)).filter(username=request.user)
-			qtyint = qty[0][0]
-		else:
-			name_return = ' - '
-			qtyint = ' - '
-			crrntprice = '-'
 	else:
-
 		Desc='All'
-		name_return = ' - '
-		qtyint = ' - '
-		crrntprice='-'
-	form = ListForm(None, SDesc=Desc, Sname = name_return)
-	form_cal=Form_Calculated()
+		name_return = 'share1'
+	#	qtyint = ' - '
+	#	crrntprice='-'
+	form = ListForm(None, SDesc=Desc, Sname = name_return,UserName=request.user)
+	#form_cal=Form_Calculated()
 	variables = RequestContext(request,{
 		'form':form,
-		'form_cal':form_cal ,
-		'name':request.user, 
-		'qty':qtyint,
-		'share':name_return,
-		'price':crrntprice
+	#	'form_cal':form_cal ,
+		'name':request.user
 		})
 	return render_to_response(
    	    'sellbuy/transact.html',variables,

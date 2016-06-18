@@ -3,12 +3,11 @@
 {% block content %}
 <form method="Post" action=".">{% csrf_token %}
     <p>Welcome {{ name }}</p>
-    <p>{{ form.as_table }} !!!</p>
+    <table>{{ form.as_table }}</table>
     
  
 </form>
 <table border=2>
-       {{share}}    
     {{form_cal.as_table}}
 </table>
     <a href="/logout/">Logout</a>
