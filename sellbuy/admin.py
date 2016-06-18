@@ -7,7 +7,7 @@ from .models import ShareDetail
 from .forms import ShareForm
 
 class ShareAdmin(admin.ModelAdmin):
-    list_display=["__str__","describ","currentprice"]
+    list_display=["__str__","describ","currentprice","queries"]
     form=ShareForm
 admin.site.register(Share,ShareAdmin)
 

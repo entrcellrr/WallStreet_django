@@ -9,6 +9,9 @@ class Share(models.Model):
     name=models.CharField(max_length=120,blank=True,null=True)
     describ=models.CharField(max_length=120,blank=True,null=True)
     currentprice=models.DecimalField(max_digits=11,decimal_places=4,default=1000.0000)
+    queries=models.PositiveSmallIntegerField(default=0)
+	
+
 
 
     def __str__(self):
