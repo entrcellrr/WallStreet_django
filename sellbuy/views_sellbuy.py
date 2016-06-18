@@ -20,13 +20,10 @@ def sellbuyhome(request):
 	else:
 		Desc='All'
 		name_return = 'share1'
-	#	qtyint = ' - '
-	#	crrntprice='-'
+
 	form = ListForm(None, SDesc=Desc, Sname = name_return,UserName=request.user)
-	#form_cal=Form_Calculated()
 	variables = RequestContext(request,{
 		'form':form,
-	#	'form_cal':form_cal ,
 		'name':request.user
 		})
 	return render_to_response(

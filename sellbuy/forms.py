@@ -18,7 +18,6 @@ class ListForm(forms.Form):
         super(ListForm,self).__init__(*args,**kwargs)
 
         queryset=Share.objects.values_list('describ','describ').order_by('describ').distinct()
-        #queryset = list(chain(queryset,tuple({tuple({u'all'})+tuple({u'all'})})))
         if self.Desc !='All':
             queryshares=Share.objects.values_list('name','name').order_by('name').filter(describ=self.Desc)
         else:
@@ -41,15 +40,11 @@ class ListForm(forms.Form):
                     self.initial['ShareName'] = self.fields['ShareName'].choices[i][0]
         
         price=Share.objects.get(name=self.Sname)
-#        print price.describ
-#        print self.Desc
+
         if self.Desc==price.describ or self.Desc=='All':
             var_crrntprice=price.currentprice
-#            print var_crrntprice
             qty = ShareDetail.objects.values_list(str(self.Sname)).filter(username=self.UserName)
             var_qty = qty[0][0]
-#            print var_qty
-
         else:
             var_crrntprice=price.currentprice
             qty = ShareDetail.objects.values_list(str(self.fields['ShareName'].choices[0][0])).filter(username=self.UserName)
@@ -57,10 +52,7 @@ class ListForm(forms.Form):
             qty = ShareDetail.objects.values_list(str(self.fields['ShareName'].choices[0][0])).filter(username=self.UserName)
             price=Share.objects.get(name=self.Sname)
             var_crrntprice=price.currentprice   
-###################################################
-#    ShareDescrib,initial={'ab': 'ab'}
-#        print "aditya var_crrntprice"
- #       print var_crrntprice
+
         self.fields['QTY']=forms.CharField(widget = forms.TextInput(attrs={'value':var_qty,
             'size':10,
             'title': 'Qty',
