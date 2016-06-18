@@ -15,21 +15,30 @@ def sellbuyhome(request):
 	
 	if request.method == 'POST':
 		Desc = request.POST.get("ShareDescrib")
+		
 		name_return = request.POST.get("ShareName")
-		qty = ShareDetail.objects.values_list(str(name_return)).filter(username=request.user)
-		qtyint = qty[0][0]
-
+		price=Share.objects.get(name=name_return)
+		if Desc==price.describ or Desc=='All':
+			crrntprice=price.currentprice
+			qty = ShareDetail.objects.values_list(str(name_return)).filter(username=request.user)
+			qtyint = qty[0][0]
+		else:
+			name_return = ' - '
+			qtyint = ' - '
+			crrntprice='-'
 	else:
 
 		Desc='All'
 		name_return = ' - '
-		qtyint = 0
+		qtyint = ' - '
+		crrntprice='-'
 	form = ListForm(None, SDesc=Desc, Sname = name_return)
 	variables = RequestContext(request,{
 		'form':form, 
 		'name':request.user, 
 		'qty':qtyint,
-		'share':name_return
+		'share':name_return,
+		'price':crrntprice
 		})
 	return render_to_response(
    	    'sellbuy/transact.html',variables,
