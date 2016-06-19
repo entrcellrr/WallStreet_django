@@ -22,7 +22,7 @@ def current_priceAjax(request):
 	#data=serializers.serialize('xml',Share.objects.all().exclude(describ='All'),fields=('name','currentprice'))
 	data=Share.objects.all().exclude(describ='All')
 	
-	strdata='<marquee direction="up" height =25 scrolldelay=500><table>'
+	strdata='<marquee direction="up" height =40 scrolldelay=500><table>'
 	for o in data:
 		print o.currentprice
 		strdata+='<tr><td>'+str(o.name)+'</td><td>'+str(o.currentprice)+'</td></tr>'
