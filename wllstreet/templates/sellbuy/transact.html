@@ -3,12 +3,10 @@
 {% block content %}
   <p>Welcome {{ name }}</p>
 <table>
-  <tr>
+  <tr >
     <td>  
-<form method="Post" action=".">{% csrf_token %}
+<form method="post" action=".">{% csrf_token %}
     <table>{{ form.as_table }}</table>
-
- 
 </form>
     </td>
     <td>

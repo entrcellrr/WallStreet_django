@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from login.forms import *
 from django.contrib.auth.decorators import login_required
-
 from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render_to_response, render
 from django.http import HttpResponseRedirect, HttpResponse
@@ -12,10 +11,10 @@ from .forms import ListForm
 from django.core import serializers
 from django.http import JsonResponse
 import json
-# Create your views here.
 import threading
 i=-2
 userstr=''
+
 @login_required
 def current_priceAjax(request):
 
@@ -23,21 +22,24 @@ def current_priceAjax(request):
 	global userstr
 	userstr=str(request.user)
 	strdata='<marquee onmouseover="this.stop()" onmouseout="this.start()" direction="up" height =40 scrolldelay=300><table>'
+	strdata='<table>'
+	
 	global i
 	if i is -2:
-		i=27
+		i=30
 		printit()
 	for o in data:
 
 		strdata+='<tr><td>'+str(o.name)+'</td><td>'+str(o.currentprice)+'</td></tr>'
-	strdata+='</table></marquee>'	
+	strdata+='</table>'	
+	
+	#strdata+='</table></marquee>'	
 	return HttpResponse(strdata)
 
-def timer_update(request):
 
+def timer_update(request):
 	time_data=Timer.objects.all().filter(name='timerUpdate')
 	return HttpResponse([(o.time)for o in time_data])
-
 
 def printit():
 	global i
@@ -47,7 +49,7 @@ def printit():
 	model = Timer.objects.get(name='timerUpdate')
 	
 	if i==-1:
-		i=27
+		i=30
 	setattr(model,'time',i)
 	model.save()
 	print "Hello, World!",i,userstr
@@ -61,8 +63,8 @@ def sellbuyhome(request):
 		name_return = request.POST.get("ShareName")
 	else:
 		Desc='All'
-	
 		name_return = 'share1'
+		
 	form = ListForm(None, SDesc=Desc, Sname = name_return,UserName=request.user)
 	variables = RequestContext(request,{
 		'form':form,
@@ -71,5 +73,3 @@ def sellbuyhome(request):
 	return render_to_response(
    	    'sellbuy/transact.html',variables,
      	)
-
-
