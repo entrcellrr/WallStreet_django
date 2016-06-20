@@ -48,7 +48,7 @@ function loadDoc() {
 setInterval(function(){
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {var response_data=xhttp.responseText;
-     if(response_data=='0'||response_data=='1'){loadDoc();}
+     if(response_data=='0'){loadDoc();}
       document.getElementById("timer").innerHTML = "refresh in : "+response_data+" sec";
   
   };

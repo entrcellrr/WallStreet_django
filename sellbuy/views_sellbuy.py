@@ -14,7 +14,7 @@ from django.http import JsonResponse
 import json
 # Create your views here.
 import threading
-i=0
+i=-2
 userstr=''
 @login_required
 def current_priceAjax(request):
@@ -24,10 +24,9 @@ def current_priceAjax(request):
 	userstr=str(request.user)
 	strdata='<marquee onmouseover="this.stop()" onmouseout="this.start()" direction="up" height =40 scrolldelay=300><table>'
 	global i
-	if i is 0:
-		i=25
+	if i is -2:
+		i=27
 		printit()
-		
 	for o in data:
 
 		strdata+='<tr><td>'+str(o.name)+'</td><td>'+str(o.currentprice)+'</td></tr>'
@@ -46,10 +45,11 @@ def printit():
 	threading.Timer(1.0, printit).start()
 	i=i-1
 	model = Timer.objects.get(name='timerUpdate')
+	
+	if i==-1:
+		i=27
 	setattr(model,'time',i)
 	model.save()
-	if i==-1:
-		i=25
 	print "Hello, World!",i,userstr
   
 
