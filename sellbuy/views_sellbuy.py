@@ -22,7 +22,7 @@ def current_priceAjax(request):
 	global userstr
 	userstr=str(request.user)
 	strdata='<marquee onmouseover="this.stop()" onmouseout="this.start()" direction="up" height =40 scrolldelay=300><table>'
-	strdata='<table>'
+
 	
 	global i
 	if i is -2:
@@ -31,7 +31,7 @@ def current_priceAjax(request):
 	for o in data:
 
 		strdata+='<tr><td>'+str(o.name)+'</td><td>'+str(o.currentprice)+'</td></tr>'
-	strdata+='</table>'	
+	strdata+='</table></marquee>'	
 	
 	#strdata+='</table></marquee>'	
 	return HttpResponse(strdata)
@@ -64,7 +64,7 @@ def sellbuyhome(request):
 	else:
 		Desc='All'
 		name_return = 'share1'
-		
+
 	form = ListForm(None, SDesc=Desc, Sname = name_return,UserName=request.user)
 	variables = RequestContext(request,{
 		'form':form,
