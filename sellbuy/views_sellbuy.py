@@ -25,8 +25,9 @@ def current_priceAjax(request):
 	strdata='<marquee onmouseover="this.stop()" onmouseout="this.start()" direction="up" height =40 scrolldelay=300><table>'
 	global i
 	if i is 0:
+		i=25
 		printit()
-		i=1
+		
 	for o in data:
 
 		strdata+='<tr><td>'+str(o.name)+'</td><td>'+str(o.currentprice)+'</td></tr>'
@@ -43,7 +44,12 @@ def printit():
 	global i
 	global userstr
 	threading.Timer(1.0, printit).start()
-	i=i+1
+	i=i-1
+	model = Timer.objects.get(name='timerUpdate')
+	setattr(model,'time',i)
+	model.save()
+	if i==-1:
+		i=25
 	print "Hello, World!",i,userstr
   
 
