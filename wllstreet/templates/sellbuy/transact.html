@@ -1,27 +1,73 @@
 {% extends "base.html" %}
 
 {% block content %}
+  <p>Welcome {{ name }}</p>
+<table>
+  <tr>
+    <td>  
 <form method="Post" action=".">{% csrf_token %}
-    <p>Welcome {{ name }}</p>
     <table>{{ form.as_table }}</table>
-    
+
  
 </form>
-<table border=2>
-    {{form_cal.as_table}}
+    </td>
+    <td>
+  <table >
+    <tr>
+      <td>
+        <table border=2><tr><td>
+        <div id="demo"></div>
+        </td></tr></table>
+      </td></tr>
+      <tr height =20><td>
+       <div id="timer">20</div>
+      </td>
+    </tr>
+  </table>
+</td>
+</tr>
 </table>
-
 <br>
 <br>
 
-<table border =2>
-    <tr><td>
-<div id="demo"><h2>Let AJAX change this text</h2></div></td>></tr>
-</table>
 <button type="button" onclick="loadDoc()">refresh</button>
 
 <script>
 function loadDoc() {
+ var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      document.getElementById("demo").innerHTML = xhttp.responseText;
+    }
+    loadTime();
+  };
+  xhttp.open("GET", "http://127.0.0.1:8000/current_price/", true);
+  xhttp.send();
+  }
+  ////////////////////////////////////////////////////////////////////
+  function loadTime() {
+ var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {var response_data=xhttp.responseText;
+     if(response_data=='0'||response_data=='1'){loadDoc();}
+      document.getElementById("timer").innerHTML = response_data;
+    
+  };
+  xhttp.open("GET", "http://127.0.0.1:8000/timer_update/", true);
+  xhttp.send();
+}
+//#################################################################################################
+setInterval(function(){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {var response_data=xhttp.responseText;
+     if(response_data=='0'||response_data=='1'){loadDoc();}
+      document.getElementById("timer").innerHTML = response_data;
+  
+  };
+  xhttp.open("GET", "http://127.0.0.1:8000/timer_update/", true);
+  xhttp.send();}, 990);
+
+//################################################################################################3
+ /*setInterval(function(){
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
@@ -29,8 +75,8 @@ function loadDoc() {
     }
   };
   xhttp.open("GET", "http://127.0.0.1:8000/current_price/", true);
-  xhttp.send();
-}
+  xhttp.send();}, 25800);
+*/
 </script>
   <form method="GET" action=".">
  

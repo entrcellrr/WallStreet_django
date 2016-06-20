@@ -11,11 +11,15 @@ class Share(models.Model):
     currentprice=models.DecimalField(max_digits=11,decimal_places=4,default=1000.0000)
     queries=models.PositiveSmallIntegerField(default=0)
 	
-
-
-
     def __str__(self):
         return self.name
+
+class Timer(models.Model):
+    name=models.CharField(max_length=120,blank=True,null=True)
+    time=models.PositiveSmallIntegerField(default=0)	
+    def __str__(self):
+        return self.name
+
 
 class ShareDetail(models.Model):
 	id=models.PositiveSmallIntegerField(primary_key='True')

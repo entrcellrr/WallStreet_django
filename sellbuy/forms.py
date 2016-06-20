@@ -56,7 +56,7 @@ class ListForm(forms.Form):
         self.fields['QTY']=forms.CharField(widget = forms.TextInput(attrs={
             'value':var_qty,
             'size':5,
-            'title': 'Qty',
+            'title': 'Qty in hand',
             'disabled':'disabled'}),required=True) 
     
         self.fields['Current_Price']=forms.IntegerField(widget = forms.TextInput(attrs={
