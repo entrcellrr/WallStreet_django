@@ -70,30 +70,51 @@ def printit():
 
 @login_required
 def sellbuyhome(request):
-
+	Desc='All'
+	name_return = 'share1'
+	error=''
+	
 	if request.method == 'POST':
 		Desc = request.POST.get("ShareDescrib")
 		name_return = request.POST.get("ShareName")
-###################################################################################################3
-		if request.POST.get("buy")=='BUY':
-			qty1=int(request.POST.get("Qty"))
-			money=ShareDetail.objects.get(name=request.user)		
-			print 'buy pressed'
-#####################################################################################################
-		if request.POST.get("sell")=='SELL':
-			qty1=request.POST.get("Qty")
+		qty1=int(request.POST.get("Qty"))
+		user_query=ShareDetail.objects.get(username=request.user)
+		money=user_query.money_in_hand
 			
-			print 'sell pressed'
-##################################################################################################			
-	else:
-		Desc='All'
-		name_return = 'share1'
+		share_query=Share.objects.get(name=name_return)
+		share_price=share_query.currentprice
 		
+		if request.POST.get("buy")=='BUY':
+			
+			
+			if(qty1*share_price>money):
+				error='Money is less.Only '+str(int(money/share_price))+' shares can be bought'
+			else:
+				var_qty2 = ShareDetail.objects.values_list(name_return).filter(username=request.user)
+				qty2 = var_qty2[0][0]
+				setattr(user_query,name_return,qty1+qty2)
+				setattr(user_query,'money_in_hand',money-share_price*qty1)
+				user_query.save()
+				#print "user money"+str(user_query.money_in_hand)
+				error='success'
+
+		if request.POST.get("sell")=='SELL':
+
+			var_qty2 = ShareDetail.objects.values_list(name_return).filter(username=request.user)
+			qty2 = var_qty2[0][0]
+			setattr(user_query,name_return,qty2-qty1)
+			setattr(user_query,'money_in_hand',money+share_price*qty1)
+			user_query.save()
+			#print "user money"+str(user_query.money_in_hand)
+			error='success'
+		
+	user_query=ShareDetail.objects.get(username=request.user)
 	form = ListForm(None, SDesc=Desc, Sname = name_return,UserName=request.user)
 	variables = RequestContext(request,{
 		'form':form,
 		'name':request.user,
-	#	'latupdated_time':datetime.datetime.now()
+		'error':error,
+		'money':user_query.money_in_hand,
 		})
 	return render_to_response(
    	    'sellbuy/transact.html',variables,

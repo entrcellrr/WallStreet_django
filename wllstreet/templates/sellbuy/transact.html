@@ -2,12 +2,15 @@
 
 {% block content %}
   <p>Welcome {{ name }}</p>
+  <h4><p>Acct Baln {{ money }}</p></h4>
+  
 <table>
   <tr >
     <td>  
       <table><tr><td>
 <form method="post" action=".">{% csrf_token %}
     <table>{{ form.as_table }}</table>
+       <h5>{{error}}</h5>
        <h5> last updated:<div id="time"></div></h5>
     
     <br><br>
