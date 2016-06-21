@@ -29,5 +29,7 @@ urlpatterns = [
     url(r'^success/$', views.registersuccess, name = 'registersuccess'),
     url(r'^current_price/$',views_sellbuy.current_priceAjax, name = 'current_price'),
     url(r'^timer_update/$',views_sellbuy.timer_update, name = 'timer_update'),
+    url(r'^current_news/$',views_sellbuy.current_news, name = 'current_news'),
+    
     
 ]

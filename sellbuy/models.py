@@ -13,7 +13,12 @@ class Share(models.Model):
 	
     def __str__(self):
         return self.name
-
+class News(models.Model):
+    news=models.CharField(max_length=120,blank=True,null=True)
+    weight=models.DecimalField(max_digits=4,decimal_places=2,default=-1)
+    
+    def __str__(self):
+        return self.news
 class Timer(models.Model):
     name=models.CharField(max_length=120,blank=True,null=True)
     time=models.PositiveSmallIntegerField(default=0)	

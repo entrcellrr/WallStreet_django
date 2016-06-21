@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render_to_response, render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
-from sellbuy.models import Share, ShareDetail,Timer
+from sellbuy.models import Share, ShareDetail,Timer,News
 from login.models import UserDetail
 from .forms import ListForm
 from django.core import serializers
@@ -35,6 +35,19 @@ def current_priceAjax(request):
 	
 	#strdata+='</table></marquee>'	
 	return HttpResponse(strdata)
+
+@login_required
+def current_news(request):
+
+	data=News.objects.all()
+	userstr=str(request.user)
+	strnews='<marquee onmouseover="this.stop()" onmouseout="this.start()" direction="up" height =40 scrolldelay=300><table>'
+	for o in data:
+		strnews+='<tr><td>'+str(o.news)+'</td></tr>'
+	strnews+='</table>'	
+	
+	#strdata+='</table></marquee>'	
+	return HttpResponse(strnews)
 
 
 def timer_update(request):

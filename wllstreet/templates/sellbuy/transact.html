@@ -5,6 +5,7 @@
 <table>
   <tr >
     <td>  
+      <table><tr><td>
 <form method="post" action=".">{% csrf_token %}
     <table>{{ form.as_table }}</table>
        <h5> last updated:<div id="time"></div></h5>
@@ -14,7 +15,11 @@
 <input type="submit" value="BUY" name="buy" />
   <input type="submit" value="SELL" name = "sell"/>
        
-</form>
+</form></td>
+<td width = 550></td>
+<td>
+<table border=2><tr><td><div id="news">google has launched worlds 1st self driving cars</div></td></tr></table>
+</td></tr></table>
     <table height =308 width =1100>
       <tr>
         <td>
@@ -22,7 +27,7 @@
 
     </td>
     <td>
-  <table >
+  <table>
     <tr>
       <td >
         <table border=2><tr><td>
@@ -69,6 +74,16 @@ setInterval(function(){
   xhttp.send();}, 999);
 
 //################################################################################################3
+setInterval(function(){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {var response_data=xhttp.responseText;
+     if(response_data=='0'){loadDoc();}
+      document.getElementById("news").innerHTML = response_data;
+  
+  };
+  xhttp.open("GET", "http://127.0.0.1:8000/current_news/", true);
+  xhttp.send();}, 5000);
+
  /*setInterval(function(){
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
