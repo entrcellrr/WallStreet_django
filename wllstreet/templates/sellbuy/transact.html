@@ -1,9 +1,18 @@
-{% extends "base.html" %}
-
-{% block content %}
-  <p>Welcome {{ name }}</p>
-  <h4><p>Acct Baln {{ money }}</p></h4>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+  <title>WALLSTREET</title>
+    <meta name="description" content="">
   
+</head>
+<body onload="loadDoc()">
+    
+<table height =5><tr><td>
+  <h3>Welcome {{ name }}</p></h3></td>
+  <td width =1050></td><td>
+  <h4><p>Acct Baln : {{ money }}</p></h4>
+  </td>
 <table>
   <tr >
     <td>  
@@ -19,11 +28,11 @@
   <input type="submit" value="SELL" name = "sell"/>
        
 </form></td>
-<td width = 550></td>
+<td width = 525></td>
 <td>
-<table border=2><tr><td><div id="news">google has launched worlds 1st self driving cars</div></td></tr></table>
+<table  border=2><tr><td><div id="news">google has launched worlds 1st self driving cars</div></td></tr></table>
 </td></tr></table>
-    <table height =308 width =1100>
+    <table height =300 width =1100>
       <tr>
         <td>
         </td></tr></table>
@@ -33,7 +42,7 @@
   <table>
     <tr>
       <td>
-        <table border=2><tr><td>
+        <table  border=2><tr><td>
         <div id="demo"></div>
         </td></tr></table>
       </td></tr>
@@ -102,4 +111,5 @@ function loadNews(){
 </script>
   
     <br>
-{% endblock %}
+</body>
+</html>
