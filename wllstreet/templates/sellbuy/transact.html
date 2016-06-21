@@ -60,7 +60,16 @@ function loadDoc() {
   xhttp.send();
   var today = new Date();
 document.getElementById('time').innerHTML=today;
-  }
+
+ var xhttp2 = new XMLHttpRequest();
+  xhttp2.onreadystatechange = function() {var response_data2=xhttp2.responseText;
+      document.getElementById("news").innerHTML = response_data2;
+  
+  };
+  xhttp2.open("GET", "http://127.0.0.1:8000/current_news/", true);
+  xhttp2.send();
+}
+  
  
 //#################################################################################################
 setInterval(function(){
@@ -77,7 +86,6 @@ setInterval(function(){
 setInterval(function(){
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {var response_data=xhttp.responseText;
-     if(response_data=='0'){loadDoc();}
       document.getElementById("news").innerHTML = response_data;
   
   };
