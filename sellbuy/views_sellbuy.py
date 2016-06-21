@@ -22,7 +22,7 @@ def current_priceAjax(request):
 	global userstr
 	userstr=str(request.user)
 	strdata='<marquee onmouseover="this.stop()" onmouseout="this.start()" direction="up" height =40 scrolldelay=300><table>'
-
+	strdata='<table>'
 	
 	global i
 	if i is -2:
@@ -31,7 +31,7 @@ def current_priceAjax(request):
 	for o in data:
 
 		strdata+='<tr><td>'+str(o.name)+'</td><td>'+str(o.currentprice)+'</td></tr>'
-	strdata+='</table></marquee>'	
+	strdata+='</table>'	
 	
 	#strdata+='</table></marquee>'	
 	return HttpResponse(strdata)
@@ -52,7 +52,7 @@ def printit():
 		i=30
 	setattr(model,'time',i)
 	model.save()
-	print "Hello, World!",i,userstr
+	#print "Hello, World!",i,userstr
   
 
 @login_required
@@ -61,10 +61,21 @@ def sellbuyhome(request):
 	if request.method == 'POST':
 		Desc = request.POST.get("ShareDescrib")
 		name_return = request.POST.get("ShareName")
+###################################################################################################3
+		if request.POST.get("buy")=='BUY':
+			qty1=request.POST.get("Qty")
+			
+			print 'buy pressed'
+#####################################################################################################
+		if request.POST.get("sell")=='SELL':
+			qty1=request.POST.get("Qty")
+			
+			print 'sell pressed'
+##################################################################################################			
 	else:
 		Desc='All'
 		name_return = 'share1'
-
+		
 	form = ListForm(None, SDesc=Desc, Sname = name_return,UserName=request.user)
 	variables = RequestContext(request,{
 		'form':form,

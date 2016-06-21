@@ -53,17 +53,23 @@ class ListForm(forms.Form):
             price=Share.objects.get(name=self.Sname)
             var_crrntprice=price.currentprice   
 
-        self.fields['QTY']=forms.CharField(widget = forms.TextInput(attrs={
+        self.fields['QTY_in_hand']=forms.CharField(widget = forms.TextInput(attrs={
             'value':var_qty,
-            'size':5,
+            'size':7,
             'title': 'Qty in hand',
             'disabled':'disabled'}),required=True) 
     
         self.fields['Current_Price']=forms.IntegerField(widget = forms.TextInput(attrs={
             'value':var_crrntprice,
-            'size': 5,
+            'size': 7,
             'title': 'Currnt_price',
             'disabled':'disabled'
+            }),required=True)
+
+        self.fields['Qty']=forms.IntegerField(widget = forms.TextInput(attrs={
+            'value':0,
+            'size': 7,
+            'title': 'QTY_QUERY',
             }),required=True)
     
 def clean_name(self):

@@ -7,7 +7,17 @@
     <td>  
 <form method="post" action=".">{% csrf_token %}
     <table>{{ form.as_table }}</table>
+    <br><br>
+
+<input type="submit" value="BUY" name="buy" />
+  <input type="submit" value="SELL" name = "sell"/>
+       
 </form>
+    <table height =410 width =1100>
+      <tr>
+        <td>
+        </td></tr></table>
+
     </td>
     <td>
   <table >
@@ -19,6 +29,8 @@
       </td></tr>
       <tr height =30><td>
        <div id="timer">refresh in : 20</div>
+<button type="button" onclick="loadDoc()">refresh</button>
+
       </td>
     </tr>
   </table>
@@ -28,7 +40,6 @@
 <br>
 <br>
 
-<button type="button" onclick="loadDoc()">refresh</button>
 
 <script>
 function loadDoc() {
@@ -51,7 +62,7 @@ setInterval(function(){
   
   };
   xhttp.open("GET", "http://127.0.0.1:8000/timer_update/", true);
-  xhttp.send();}, 990);
+  xhttp.send();}, 999);
 
 //################################################################################################3
  /*setInterval(function(){
@@ -65,11 +76,6 @@ setInterval(function(){
   xhttp.send();}, 25800);
 */
 </script>
-  <form method="GET" action=".">
- 
-        <input type="submit" value="BUY" />
-        <input type="submit" value="SELL" name = "sell"/>
-        <input type="hidden" name="next" value="/home" />
-    </form>
+  
     <br>
 {% endblock %}
