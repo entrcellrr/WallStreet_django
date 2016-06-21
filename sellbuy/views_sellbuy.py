@@ -76,8 +76,8 @@ def sellbuyhome(request):
 		name_return = request.POST.get("ShareName")
 ###################################################################################################3
 		if request.POST.get("buy")=='BUY':
-			qty1=request.POST.get("Qty")
-			
+			qty1=int(request.POST.get("Qty"))
+			money=ShareDetail.objects.get(name=request.user)		
 			print 'buy pressed'
 #####################################################################################################
 		if request.POST.get("sell")=='SELL':

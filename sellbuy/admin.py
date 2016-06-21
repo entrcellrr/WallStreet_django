@@ -21,5 +21,5 @@ class TimerAdmin(admin.ModelAdmin):
 admin.site.register(Timer,TimerAdmin)
 
 class ShareDetailAdmin(admin.ModelAdmin):
-    list_display=["__str__"]
+    list_display=["__str__","money_in_hand"]
 admin.site.register(ShareDetail,ShareDetailAdmin)

@@ -29,7 +29,7 @@
     <td>
   <table>
     <tr>
-      <td >
+      <td>
         <table border=2><tr><td>
         <div id="demo"></div>
         </td></tr></table>
@@ -61,13 +61,7 @@ function loadDoc() {
   var today = new Date();
 document.getElementById('time').innerHTML=today;
 
- var xhttp2 = new XMLHttpRequest();
-  xhttp2.onreadystatechange = function() {var response_data2=xhttp2.responseText;
-      document.getElementById("news").innerHTML = response_data2;
-  
-  };
-  xhttp2.open("GET", "http://127.0.0.1:8000/current_news/", true);
-  xhttp2.send();
+loadNews();
 }
   
  
@@ -83,14 +77,14 @@ setInterval(function(){
   xhttp.send();}, 999);
 
 //################################################################################################3
-setInterval(function(){
+function loadNews(){
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {var response_data=xhttp.responseText;
       document.getElementById("news").innerHTML = response_data;
   
   };
   xhttp.open("GET", "http://127.0.0.1:8000/current_news/", true);
-  xhttp.send();}, 5500);
+  xhttp.send();}
 
  /*setInterval(function(){
   var xhttp = new XMLHttpRequest();

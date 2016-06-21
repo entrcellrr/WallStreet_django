@@ -29,6 +29,7 @@ class Timer(models.Model):
 class ShareDetail(models.Model):
 	id=models.PositiveSmallIntegerField(primary_key='True')
 	username=models.CharField(max_length=120,blank=True,null=True)
+	money_in_hand=models.DecimalField(max_digits=10,decimal_places=2,default=100000.00)
 	Amazon=models.PositiveSmallIntegerField(default=0)
 	Google=models.PositiveSmallIntegerField(default=0)
 	Facebook=models.PositiveSmallIntegerField(default=0)
