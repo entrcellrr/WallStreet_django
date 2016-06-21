@@ -7,13 +7,15 @@
     <td>  
 <form method="post" action=".">{% csrf_token %}
     <table>{{ form.as_table }}</table>
+       <h5> last updated:<div id="time"></div></h5>
+    
     <br><br>
 
 <input type="submit" value="BUY" name="buy" />
   <input type="submit" value="SELL" name = "sell"/>
        
 </form>
-    <table height =410 width =1100>
+    <table height =308 width =1100>
       <tr>
         <td>
         </td></tr></table>
@@ -27,7 +29,7 @@
         <div id="demo"></div>
         </td></tr></table>
       </td></tr>
-      <tr height =30><td>
+      <tr><td>
        <div id="timer">refresh in : 20</div>
 <button type="button" onclick="loadDoc()">refresh</button>
 
@@ -51,6 +53,8 @@ function loadDoc() {
   };
   xhttp.open("GET", "http://127.0.0.1:8000/current_price/", true);
   xhttp.send();
+  var today = new Date();
+document.getElementById('time').innerHTML=today;
   }
  
 //#################################################################################################

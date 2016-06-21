@@ -8,7 +8,7 @@ from django import forms
 class Share(models.Model):
     name=models.CharField(max_length=120,blank=True,null=True)
     describ=models.CharField(max_length=120,blank=True,null=True)
-    currentprice=models.DecimalField(max_digits=11,decimal_places=4,default=1000.0000)
+    currentprice=models.DecimalField(max_digits=7,decimal_places=2,default=1000.0000)
     queries=models.PositiveSmallIntegerField(default=0)
 	
     def __str__(self):
@@ -24,9 +24,9 @@ class Timer(models.Model):
 class ShareDetail(models.Model):
 	id=models.PositiveSmallIntegerField(primary_key='True')
 	username=models.CharField(max_length=120,blank=True,null=True)
-	amazon=models.PositiveSmallIntegerField(default=0)
+	Amazon=models.PositiveSmallIntegerField(default=0)
 	Google=models.PositiveSmallIntegerField(default=0)
-	facebook=models.PositiveSmallIntegerField(default=0)
+	Facebook=models.PositiveSmallIntegerField(default=0)
 	share1=models.PositiveSmallIntegerField(default=0)
 	share2=models.PositiveSmallIntegerField(default=0)
 	share3=models.PositiveSmallIntegerField(default=0)

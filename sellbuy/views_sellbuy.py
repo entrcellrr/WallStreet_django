@@ -10,8 +10,8 @@ from login.models import UserDetail
 from .forms import ListForm
 from django.core import serializers
 from django.http import JsonResponse
-import json
-import threading
+import json,threading#,datetime
+
 i=-2
 userstr=''
 
@@ -47,9 +47,9 @@ def printit():
 	threading.Timer(1.0, printit).start()
 	i=i-1
 	model = Timer.objects.get(name='timerUpdate')
-	
 	if i==-1:
 		i=30
+	print i
 	setattr(model,'time',i)
 	model.save()
 	#print "Hello, World!",i,userstr
@@ -79,7 +79,8 @@ def sellbuyhome(request):
 	form = ListForm(None, SDesc=Desc, Sname = name_return,UserName=request.user)
 	variables = RequestContext(request,{
 		'form':form,
-		'name':request.user
+		'name':request.user,
+	#	'latupdated_time':datetime.datetime.now()
 		})
 	return render_to_response(
    	    'sellbuy/transact.html',variables,
