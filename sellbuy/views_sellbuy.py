@@ -29,8 +29,9 @@ def current_priceAjax(request):
 		i=30
 		printit()
 	for o in data:
-
-		strdata+='<tr><td>'+str(o.name)+'</td><td>'+str(o.currentprice)+'</td></tr>'
+		qty = ShareDetail.objects.values_list(str(o.name)).filter(username=request.user)
+		var_qty = qty[0][0]
+		strdata+='<tr><td>'+str(o.name)+'</td><td>'+str(o.currentprice)+'</td><td>'+str(var_qty)+'</td></tr>'
 	strdata+='</table>'	
 	
 	#strdata+='</table></marquee>'	

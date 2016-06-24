@@ -21,7 +21,7 @@ class ListForm(forms.Form):
         if self.Desc !='All':
             queryshares=Share.objects.values_list('name','name').order_by('name').filter(describ=self.Desc)
         else:
-            queryshares=Share.objects.values_list('name','name').order_by('name').exclude(name='none')
+            queryshares=Share.objects.values_list('name','name').order_by('describ').exclude(name='none')
     
         self.fields['ShareDescrib'] = forms.ChoiceField(widget=forms.Select(attrs={'onChange':'this.form.submit()'}),
         required=True,
