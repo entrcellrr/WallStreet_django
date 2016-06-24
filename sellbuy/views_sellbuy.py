@@ -11,6 +11,7 @@ from .forms import ListForm
 from django.core import serializers
 from django.http import JsonResponse
 import json,threading#,datetime
+import random
 
 i=-2
 userstr=''
@@ -75,14 +76,20 @@ def printit():
 		###############################################the algo to be executed every 30 secs
 		share_querylist=Share.objects.all()
 		for o in share_querylist:
+			n = random.random()#(1,10) # returns a random integer
+			cp=o.currentprice
+			#the value of n is currently randomized
+			#afterwards will be synce with news also
+			setattr(o,'currentprice',int(float(cp)*float(1+o.queries*float(n/800))))
 			setattr(o,'queries',0)	
 			o.save()
 		#	print o.name
 		#share_querylist.save()
 		#######################################################################################
-	if i==-1:
+	if i<=-1:
 		i=30
 	print i
+	#print random.random()
 	setattr(model,'time',i)
 	model.save()
 	#print "Hello, World!",i,userstr
