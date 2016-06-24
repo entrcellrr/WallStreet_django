@@ -45,10 +45,21 @@ def current_news(request):
 	strnews='<marquee onmouseover="this.stop()" onmouseout="this.start()" direction="up" height =40 scrolldelay=300><table>'
 	for o in data:
 		strnews+='<tr><td>'+str(o.news)+'</td></tr>'
-	strnews+='</table>'	
+	strnews+='</table></marquee>'	
 	
 	#strdata+='</table></marquee>'	
 	return HttpResponse(strnews)
+
+def current_queries(request):
+
+	data=Share.objects.all()
+	str_queries='<table>'
+	for o in data:
+		str_queries+='<tr><td>'+str(o.name)+'</td><td>'+str(o.queries)+'</td></tr>'
+	str_queries+='</table>'	
+	
+	#strdata+='</table></marquee>'	
+	return HttpResponse(str_queries)
 
 
 def timer_update(request):
@@ -84,7 +95,7 @@ def sellbuyhome(request):
 			
 		share_query=Share.objects.get(name=name_return)
 		share_price=share_query.currentprice
-		
+		qty_share_query=share_query.queries
 		if request.POST.get("buy")=='BUY':
 			
 			
@@ -94,8 +105,11 @@ def sellbuyhome(request):
 				var_qty2 = ShareDetail.objects.values_list(name_return).filter(username=request.user)
 				qty2 = var_qty2[0][0]
 				setattr(user_query,name_return,qty1+qty2)
+				
 				setattr(user_query,'money_in_hand',money-(share_price*qty1))
 				user_query.save()
+				setattr(share_query,'queries',qty1+qty_share_query)
+				share_query.save()
 				#print "user money"+str(user_query.money_in_hand)
 				error='success'
 
@@ -107,6 +121,8 @@ def sellbuyhome(request):
 				setattr(user_query,name_return,qty2-qty1)
 				setattr(user_query,'money_in_hand',money+share_price*qty1)
 				user_query.save()
+				setattr(share_query,'queries',qty_share_query-qty1)
+				share_query.save()
 				error='success'
 			else:
 				error='you dont have that many shares'
