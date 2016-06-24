@@ -56,9 +56,7 @@ def current_queries(request):
 	str_queries='<table>'
 	for o in data:
 		str_queries+='<tr><td>'+str(o.name)+'</td><td>'+str(o.queries)+'</td></tr>'
-	str_queries+='</table>'	
-	
-	#strdata+='</table></marquee>'	
+	str_queries+='</table>'
 	return HttpResponse(str_queries)
 
 
@@ -66,12 +64,22 @@ def timer_update(request):
 	time_data=Timer.objects.all().filter(name='timerUpdate')
 	return HttpResponse([(o.time)for o in time_data])
 
+
 def printit():
 	global i
 	global userstr
 	threading.Timer(1.0, printit).start()
 	i=i-1
 	model = Timer.objects.get(name='timerUpdate')
+	if i==2:
+		###############################################the algo to be executed every 30 secs
+		share_querylist=Share.objects.all()
+		for o in share_querylist:
+			setattr(o,'queries',0)	
+			o.save()
+		#	print o.name
+		#share_querylist.save()
+		#######################################################################################
 	if i==-1:
 		i=30
 	print i
