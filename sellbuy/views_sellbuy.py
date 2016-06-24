@@ -93,7 +93,7 @@ def sellbuyhome(request):
 				var_qty2 = ShareDetail.objects.values_list(name_return).filter(username=request.user)
 				qty2 = var_qty2[0][0]
 				setattr(user_query,name_return,qty1+qty2)
-				setattr(user_query,'money_in_hand',money-share_price*qty1)
+				setattr(user_query,'money_in_hand',money-(share_price*qty1))
 				user_query.save()
 				#print "user money"+str(user_query.money_in_hand)
 				error='success'
@@ -102,11 +102,13 @@ def sellbuyhome(request):
 
 			var_qty2 = ShareDetail.objects.values_list(name_return).filter(username=request.user)
 			qty2 = var_qty2[0][0]
-			setattr(user_query,name_return,qty2-qty1)
-			setattr(user_query,'money_in_hand',money+share_price*qty1)
-			user_query.save()
-			#print "user money"+str(user_query.money_in_hand)
-			error='success'
+			if qty1<=qty2:
+				setattr(user_query,name_return,qty2-qty1)
+				setattr(user_query,'money_in_hand',money+share_price*qty1)
+				user_query.save()
+				error='success'
+			else:
+				error='you dont have that many shares'
 		
 	user_query=ShareDetail.objects.get(username=request.user)
 	form = ListForm(None, SDesc=Desc, Sname = name_return,UserName=request.user)
