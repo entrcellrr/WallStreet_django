@@ -32,7 +32,7 @@ def current_priceAjax(request):
 	for o in data:
 		qty = ShareDetail.objects.values_list(str(o.name)).filter(username=request.user)
 		var_qty = qty[0][0]
-		strdata+='<tr><td>'+str(o.name)+'</td><td>'+str(o.currentprice)+'</td><td>'+str(var_qty)+'</td></tr>'
+		strdata+='<tr><td>'+str(o.name)+'</td><td>'+str(o.currentprice)+'</td><td width=25 align=\'center\'>'+str(var_qty)+'</td></tr>'
 	strdata+='</table>'	
 	
 	#strdata+='</table></marquee>'	
@@ -72,7 +72,7 @@ def printit():
 	threading.Timer(1.0, printit).start()
 	i=i-1
 	model = Timer.objects.get(name='timerUpdate')
-	if i==2:
+	if i==5:
 		###############################################the algo to be executed every 30 secs
 		share_querylist=Share.objects.all()
 		for o in share_querylist:
