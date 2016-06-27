@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'login',
     'sellbuy',
+    'portfolio',
 ]
 
 MIDDLEWARE_CLASSES = [
