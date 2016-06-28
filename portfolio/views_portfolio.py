@@ -15,13 +15,11 @@ def barchart(request):
 
 	plt.savefig(response, format="png")
 	return response
-
+i=0
 def testDynamic(request):
-	#DynamicShare2 = type('DynamicShare', (models.Model,), {
-    x1 = models.DecimalField(max_digits=7,decimal_places=2,default=0.00)#})
-    x1.contribute_to_class(DynamicShare,"x2")
-#class_prepared.connect(add_field)
-
-
-	
-
+	global i
+	i+=1
+	x1 = models.DecimalField(max_digits=7,decimal_places=2,default=0.00)
+	x='x'+str(i)
+	x1.contribute_to_class(DynamicShare,x)
+	return HttpResponse()
