@@ -32,8 +32,5 @@ urlpatterns = [
     url(r'^timer_update/$',views_sellbuy.timer_update, name = 'timer_update'),
     url(r'^current_news/$',views_sellbuy.current_news, name = 'current_news'),
     url(r'^current_queries/$',views_sellbuy.current_queries, name = 'current_queries'), 
-    url(r'^graph1/$',views_portfolio.graph1, name = 'graph1'), 
-    url(r'^graph2/$',views_portfolio.graph2, name = 'graph2'),
-    url(r'^graph3/$',views_portfolio.graph3, name = 'graph3'),
-    url(r'^dynamictest/$',views_portfolio.testDynamic, name = 'dynamic'), 
+    url(r'^share_graph/(?P<name>\w+)/$',views_portfolio.graph, name = 'graph'), 
     ]
