@@ -5,6 +5,18 @@ from matplotlib import pylab
 from pylab import *
 from django.db import models
 from django.db.models.signals import class_prepared
+
+"""
+shell command instruction
+import csv
+with open(path) as f:
+	reader = csv.reader(f,delimiter=',')
+	i = 1
+	for row in reader:
+		name.objects.create(x=i,y=row[1])
+		i+=1
+"""
+
 def graph1(request):
 	plt.close()
 	query_x = Amazon.objects.values_list('x')
