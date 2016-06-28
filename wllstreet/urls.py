@@ -18,6 +18,7 @@ from django.contrib import admin
 #from portfolio import views_portfolio
 from login import views
 from sellbuy import views_sellbuy
+from portfolio import views_portfolio
 urlpatterns = [
     url(r'^$', 'django.contrib.auth.views.login'),
     url(r'^admin/', admin.site.urls),
@@ -31,5 +32,5 @@ urlpatterns = [
     url(r'^timer_update/$',views_sellbuy.timer_update, name = 'timer_update'),
     url(r'^current_news/$',views_sellbuy.current_news, name = 'current_news'),
     url(r'^current_queries/$',views_sellbuy.current_queries, name = 'current_queries'), 
- #   url(r'^user_portfolio/$',views_portfolio.user_portfolio, name = 'user_portfolio'),   
-]
+    url(r'^charttest/$',views_portfolio.barchart, name = 'barchart'), 
+    ]
