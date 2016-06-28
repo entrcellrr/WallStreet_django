@@ -32,5 +32,5 @@ urlpatterns = [
     url(r'^timer_update/$',views_sellbuy.timer_update, name = 'timer_update'),
     url(r'^current_news/$',views_sellbuy.current_news, name = 'current_news'),
     url(r'^current_queries/$',views_sellbuy.current_queries, name = 'current_queries'), 
-   # url(r'^charttest/$',views_portfolio.barchart, name = 'barchart'), 
+    url(r'^charttest/$',views_portfolio.barchart, name = 'barchart'), 
     ]
