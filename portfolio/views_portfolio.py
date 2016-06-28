@@ -22,4 +22,5 @@ def testDynamic(request):
 	x1 = models.DecimalField(max_digits=7,decimal_places=2,default=0.00)
 	x='x'+str(i)
 	x1.contribute_to_class(DynamicShare,x)
+	#with open('SBI1.csv')
 	return HttpResponse()
