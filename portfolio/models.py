@@ -5,17 +5,19 @@ from django.db import migrations,models
 class Amazon(models.Model):
     x=models.DecimalField(max_digits=7,decimal_places=2,default=0.00)
     y=models.DecimalField(max_digits=7,decimal_places=2,default=0.00)
-    describ=models.CharField(max_length=120,default='ecommerce')
-
+    
 class Facebook(models.Model):
     x=models.DecimalField(max_digits=7,decimal_places=2,default=0.00)
     y=models.DecimalField(max_digits=7,decimal_places=2,default=0.00)
-    describ=models.CharField(max_length=120,default='ecommerce')
-
+    
 class Google(models.Model):
     x=models.DecimalField(max_digits=7,decimal_places=2,default=0.00)
     y=models.DecimalField(max_digits=7,decimal_places=2,default=0.00)
-    describ=models.CharField(max_length=120,default='ecommerce')
+
+class User_asd(models.Model):
+    x=models.DecimalField(max_digits=7,decimal_places=2,default=0.00)
+    y=models.DecimalField(max_digits=7,decimal_places=2,default=0.00)
+
 
 
 class DynamicShare(models.Model):
