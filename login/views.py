@@ -92,7 +92,14 @@ flag=0
 def home(request):
     user = UserDetail.objects.get(name=request.user)
     name = user.name
+    return render_to_response(
+        'login/home.html',
+        {'name': name}
+        )
+
+def start(request):
     from django.core import management
+    global flag
     if flag==0:
         reload(import_module(settings.ROOT_URLCONF))
         clear_url_caches()
@@ -100,8 +107,4 @@ def home(request):
         management.call_command('makemigrations', interactive=False)
         management.call_command('migrate', interactive=False)
         flag=1
-
-    return render_to_response(
-        'login/home.html',
-        {'name': name}
-        )
+    return HttpResponse('<a href=\'./login\'>login</a>')

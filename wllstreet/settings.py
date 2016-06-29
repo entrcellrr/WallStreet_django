@@ -74,7 +74,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'wllstreet.wsgi.application'
 
 import django.contrib.auth
-django.contrib.auth.LOGIN_URL = '/'
+django.contrib.auth.LOGIN_URL = '/login'
 
 
 # Database

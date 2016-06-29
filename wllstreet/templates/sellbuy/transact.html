@@ -68,7 +68,7 @@ function loadDoc() {
       document.getElementById("demo").innerHTML = xhttp.responseText;
     }
   };
-  xhttp.open("GET", "http://127.0.0.1:8000/current_price/", true);
+  xhttp.open("GET", "./current_price/", true);
   xhttp.send();
   var today = new Date();
 document.getElementById('time').innerHTML=today;
@@ -85,7 +85,7 @@ setInterval(function(){
       document.getElementById("timer").innerHTML = "refresh in : "+response_data+" sec";
   
   };
-  xhttp.open("GET", "http://127.0.0.1:8000/timer_update/", true);
+  xhttp.open("GET", "./timer_update/", true);
   xhttp.send();}, 999);
 
 //################################################################################################3
@@ -95,7 +95,7 @@ function loadNews(){
       document.getElementById("news").innerHTML = response_data;
   
   };
-  xhttp.open("GET", "http://127.0.0.1:8000/current_news/", true);
+  xhttp.open("GET", "./current_news/", true);
   xhttp.send();}
 
 </script>
