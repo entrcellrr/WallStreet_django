@@ -33,4 +33,5 @@ urlpatterns = [
     url(r'^current_news/$',views_sellbuy.current_news, name = 'current_news'),
     url(r'^current_queries/$',views_sellbuy.current_queries, name = 'current_queries'), 
     url(r'^share_graph/(?P<name>\w+)/$',views_portfolio.graph, name = 'graph'), 
+    url(r'^dynamic/$',views_portfolio.dynamic, name = 'dynamic'), 
     ]

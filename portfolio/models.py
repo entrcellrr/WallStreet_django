@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 
-from django.db import models
+from django.db import migrations,models
 
 class Amazon(models.Model):
     x=models.DecimalField(max_digits=7,decimal_places=2,default=0.00)
