@@ -26,26 +26,6 @@ def graph(request,name):
 	plt.savefig(response, format="png")
 	plt.close()
 	return response
-class mAdmin(admin.ModelAdmin):
-	list_display=["x1"]	
-i=11
-def dynamic(request):
-	attrs = {'x1': models.DecimalField(max_digits=7,decimal_places=2,default=0.00),
-	'__module__': 'portfolio'}
-	from django.core import management
-	global i
-	model = type("testx"+str(i), (models.Model,),attrs)
-
-	admin.site.register(model,mAdmin)
-	reload(import_module(settings.ROOT_URLCONF))
-	clear_url_caches()
-	
-	management.call_command('makemigrations', interactive=False)
-	management.call_command('migrate', interactive=False)
-	
-	i+=1
-
-	return HttpResponse("hello")
 
 """
 shell command instruction

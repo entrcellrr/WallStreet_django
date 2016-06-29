@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+from django.contrib import admin
 from django.conf.urls import url
 from django.contrib import admin
 #from portfolio import views_portfolio
@@ -33,5 +34,5 @@ urlpatterns = [
     url(r'^current_news/$',views_sellbuy.current_news, name = 'current_news'),
     url(r'^current_queries/$',views_sellbuy.current_queries, name = 'current_queries'), 
     url(r'^share_graph/(?P<name>\w+)/$',views_portfolio.graph, name = 'graph'), 
-    url(r'^dynamic/$',views_portfolio.dynamic, name = 'dynamic'), 
+ #   url(r'^dynamic/$',views_portfolio.dynamic, name = 'dynamic'), 
     ]

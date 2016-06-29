@@ -7,6 +7,12 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from sellbuy.models import ShareDetail
 from .models import UserDetail
+from importlib import import_module
+from django.core.urlresolvers import clear_url_caches
+from django.db import models
+from django.apps import apps
+from django.contrib import admin
+from django.conf import settings
 @csrf_protect
 def register(request):
     if request.method == 'POST':
@@ -35,13 +41,35 @@ def register(request):
             contact=form.cleaned_data['contact'],
                 )
     
+            #######################################################################################################3
+            attrs = {'x': models.DecimalField(max_digits=7,decimal_places=2,default=0.00),
+            'y': models.DecimalField(max_digits=7,decimal_places=2,default=0.00),
+            '__module__': 'portfolio'}
+            from django.core import management
+            model = type('user_'+str(form.cleaned_data['username']), (models.Model,),attrs)
+            class mAdmin(admin.ModelAdmin):
+                list_display=["x","y"]
+            admin.site.register(model,mAdmin)
+            reload(import_module(settings.ROOT_URLCONF))
+            clear_url_caches()
+    
+            management.call_command('makemigrations', interactive=False)
+            management.call_command('migrate', interactive=False)
+    
+
+    ##################################################################################################
+ 
+
             return HttpResponseRedirect('/success/')
+    
+
     else:
         form = RegistrationForm()
     variables = RequestContext(request, {
     'form': form
     })
- 
+
+    
     return render_to_response(
     'registration/register.html',
     variables,
@@ -66,3 +94,7 @@ def home(request):
         'login/home.html',
         {'name': name}
         )
+
+def dynamic(request):
+
+    return HttpResponse("hello")
