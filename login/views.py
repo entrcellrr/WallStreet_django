@@ -85,11 +85,22 @@ def registersuccess(request):
 def logout_page(request):
     logout(request)
     return HttpResponseRedirect('/')
+
 flag=0
+
 @login_required
 def home(request):
     user = UserDetail.objects.get(name=request.user)
     name = user.name
+    from django.core import management
+    if flag==0:
+        reload(import_module(settings.ROOT_URLCONF))
+        clear_url_caches()
+    
+        management.call_command('makemigrations', interactive=False)
+        management.call_command('migrate', interactive=False)
+        flag=1
+
     return render_to_response(
         'login/home.html',
         {'name': name}
