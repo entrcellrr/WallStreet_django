@@ -46,6 +46,7 @@ def register(request):
             'y': models.DecimalField(max_digits=7,decimal_places=2,default=0.00),
             '__module__': 'portfolio'}
             from django.core import management
+
             model = type('user_'+str(form.cleaned_data['username']), (models.Model,),attrs)
             class mAdmin(admin.ModelAdmin):
                 list_display=["x","y"]
@@ -84,17 +85,17 @@ def registersuccess(request):
 def logout_page(request):
     logout(request)
     return HttpResponseRedirect('/')
-
+flag=0
 @login_required
 def home(request):
     user = UserDetail.objects.get(name=request.user)
     name = user.name
+    from django.core import management
+    if flag==0:
+        management.call_command('migrate', interactive=False)
+        flag=1
 
     return render_to_response(
         'login/home.html',
         {'name': name}
         )
-
-def dynamic(request):
-
-    return HttpResponse("hello")
