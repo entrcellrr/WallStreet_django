@@ -90,11 +90,6 @@ flag=0
 def home(request):
     user = UserDetail.objects.get(name=request.user)
     name = user.name
-    from django.core import management
-    if flag==0:
-        management.call_command('migrate', interactive=False)
-        flag=1
-
     return render_to_response(
         'login/home.html',
         {'name': name}
