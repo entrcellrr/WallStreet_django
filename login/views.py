@@ -105,6 +105,6 @@ def start(request):
         clear_url_caches()
     
         management.call_command('makemigrations', interactive=False)
-        management.call_command('migrate', interactive=False)
+        management.call_command('migrate','--fake', interactive=False)
         flag=1
     return HttpResponse('<a href=\'./login\'>login</a>')
