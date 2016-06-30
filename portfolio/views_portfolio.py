@@ -32,8 +32,10 @@ shell command instruction
 import csv
 with open(path) as f:
 	reader = csv.reader(f,delimiter=',')
-	i = 1
 	for row in reader:
-		name.objects.create(x=i,y=row[1])
-		i+=1
+		newnumber = ''
+		for o in row[1]:
+			if o != ',':
+				newnumber+=o
+		name.objects.create(x=row[0][0:10],y=float(newnumber))
 """
