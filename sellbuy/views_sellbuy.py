@@ -32,7 +32,7 @@ def current_priceAjax(request):
 	for o in data:
 		qty = ShareDetail.objects.values_list(str(o.name)).filter(username=request.user)
 		var_qty = qty[0][0]
-		strdata+='<tr><td><a href='+'\'./share_graph/'+str(o.name)+'\'>'+str(o.name)+'</a>'+'</td><td>'+str(o.currentprice)+'</td><td width=25 align=\'center\'>'+str(var_qty)+'</td></tr>'
+		strdata+='<tr><td><a href='+'\'./share_graph/'+str(o.name)+'\'target = \'_blank\'>'+str(o.name)+'</a>'+'</td><td>'+str(o.currentprice)+'</td><td width=25 align=\'center\'>'+str(var_qty)+'</td></tr>'
 	strdata+='</table>'	
 	
 	#strdata+='</table></marquee>'	
