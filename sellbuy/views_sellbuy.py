@@ -22,9 +22,9 @@ def current_priceAjax(request):
 	data=Share.objects.all().exclude(describ='All')
 	global userstr
 	userstr=str(request.user)
-	strdata='<marquee onmouseover="this.stop()" onmouseout="this.start()" direction="up" height =40 scrolldelay=300><table>'
-	strdata='<table>'
+	popup='<script language="javascript" type="text/javascript">function popitup(url) {var leftPosition, topPosition;leftPosition = (window.screen.width / 2) - ((800 / 2) + 10);topPosition = (window.screen.height / 2) - ((600 / 2) + 50);newwindow=window.open(url,\'name\',"status=no,height=600,width=800,resizable=yes,left="+ leftPosition + ",top=" + topPosition + ",screenX=" + leftPosition + ",screenY="+ topPosition + ",toolbar=no,menubar=no,scrollbars=no,directories=no");if (window.focus) {newwindow.focus()}return false;}</script>'	
 	
+	strdata='<table>'
 	global i
 	if i is -2:
 		i=30
@@ -32,7 +32,7 @@ def current_priceAjax(request):
 	for o in data:
 		qty = ShareDetail.objects.values_list(str(o.name)).filter(username=request.user)
 		var_qty = qty[0][0]
-		strdata+='<tr><td><a href='+'\'./share_graph/'+str(o.name)+'\'target = \'_blank\'>'+str(o.name)+'</a>'+'</td><td>'+str(o.currentprice)+'</td><td width=25 align=\'center\'>'+str(var_qty)+'</td></tr>'
+		strdata+='<tr><td><a href='+'\'./share_graph/'+str(o.name)+'\' onclick=\"return popitup(\'./share_graph/'+str(o.name)+'\')\">'+str(o.name)+'</a>'+'</td><td>'+str(o.currentprice)+'</td><td width=25 align=\'center\'>'+str(var_qty)+'</td></tr>'
 	strdata+='</table>'	
 	
 	#strdata+='</table></marquee>'	

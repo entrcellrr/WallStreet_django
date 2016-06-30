@@ -107,4 +107,17 @@ def start(request):
         management.call_command('makemigrations', interactive=False)
         management.call_command('migrate','--fake', interactive=False)
         flag=1
-    return HttpResponse('<a href=\'./login\'>login</a>')
+    return render_to_response(
+        'start.html',
+        )
+"""
+    head='<script type="text/javascript" src="jquery.popupWindow.js"></script>'
+    end="<script type=\"text/javascript\">$('#example2 > ul').tabs({selected:0});$('#example2 > div:eq(2) pre code').html(replaceTags($('#example2 > div:eq(1)').html()));"
+    end2="function replaceTags(stringTxt) {var theExp = /<([^<>]*)>/g;var newString = jQuery.trim(stringTxt.replace(theExp,\"&lt;$1&gt;\"));return newString;}"
+    tmp='<script type="text/javascript">$(\'.example2demo\').popupWindow({centerBrowser:1});</script>'
+
+return HttpResponse(head+'<a href=\'./login\' class=\"example2demo\">login</a>'+tmp+end+end2)
+
+
+
+"""
