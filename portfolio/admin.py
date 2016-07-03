@@ -2,8 +2,7 @@ from django.contrib import admin
 
 
 # Register your models here.
-from .models import Amazon, Google, Facebook, DynamicShare,User_asd
-
+from .models import *
 class AmazonAdmin(admin.ModelAdmin):
 	list_display=["x","y"]
 admin.site.register(Amazon,AmazonAdmin)
@@ -16,10 +15,6 @@ class FacebookAdmin(admin.ModelAdmin):
 	list_display=["x","y"]
 admin.site.register(Facebook,FacebookAdmin)
 
-class DynamicShareAdmin(admin.ModelAdmin):
-	list_display=["shareName"]
-admin.site.register(DynamicShare,DynamicShareAdmin)
-
-class User_asdAdmin(admin.ModelAdmin):
-	list_display=["x","y"]
-admin.site.register(User_asd,User_asdAdmin)
+class User_transactAdmin(admin.ModelAdmin):
+	list_display=["username"]
+admin.site.register(User_transact,User_transactAdmin)

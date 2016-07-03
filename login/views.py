@@ -13,6 +13,7 @@ from django.db import models
 from django.apps import apps
 from django.contrib import admin
 from django.conf import settings
+from portfolio.models import User_transact
 @csrf_protect
 def register(request):
     if request.method == 'POST':
@@ -32,6 +33,9 @@ def register(request):
             username=form.cleaned_data['username'],
             id=number
                 )
+            user_transact=User_transact.objects.create(
+            username=form.cleaned_data['username'],
+                )
             userdetail=UserDetail.objects.create(
             name=form.cleaned_data['username'],
             id=number,
@@ -40,26 +44,6 @@ def register(request):
             college=form.cleaned_data['college'],
             contact=form.cleaned_data['contact'],
                 )
-    
-            #######################################################################################################3
-            attrs = {'x': models.DecimalField(max_digits=7,decimal_places=2,default=0.00),
-            'y': models.DecimalField(max_digits=7,decimal_places=2,default=0.00),
-            '__module__': 'portfolio'}
-            from django.core import management
-
-            model = type('user_'+str(form.cleaned_data['username']), (models.Model,),attrs)
-            class mAdmin(admin.ModelAdmin):
-                list_display=["x","y"]
-            admin.site.register(model,mAdmin)
-            reload(import_module(settings.ROOT_URLCONF))
-            clear_url_caches()
-    
-            management.call_command('makemigrations', interactive=False)
-            management.call_command('migrate', interactive=False)
-    
-
-    ##################################################################################################
- 
 
             return HttpResponseRedirect('/success/')
     
@@ -99,25 +83,6 @@ def home(request):
 
 def start(request):
     from django.core import management
-    global flag
-    if flag==0:
-        reload(import_module(settings.ROOT_URLCONF))
-        clear_url_caches()
-    
-        management.call_command('makemigrations', interactive=False)
-        management.call_command('migrate','--fake', interactive=False)
-        flag=1
     return render_to_response(
         'start.html',
         )
-"""
-    head='<script type="text/javascript" src="jquery.popupWindow.js"></script>'
-    end="<script type=\"text/javascript\">$('#example2 > ul').tabs({selected:0});$('#example2 > div:eq(2) pre code').html(replaceTags($('#example2 > div:eq(1)').html()));"
-    end2="function replaceTags(stringTxt) {var theExp = /<([^<>]*)>/g;var newString = jQuery.trim(stringTxt.replace(theExp,\"&lt;$1&gt;\"));return newString;}"
-    tmp='<script type="text/javascript">$(\'.example2demo\').popupWindow({centerBrowser:1});</script>'
-
-return HttpResponse(head+'<a href=\'./login\' class=\"example2demo\">login</a>'+tmp+end+end2)
-
-
-
-"""

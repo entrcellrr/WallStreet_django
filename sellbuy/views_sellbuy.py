@@ -12,7 +12,6 @@ from django.core import serializers
 from django.http import JsonResponse
 import json,threading#,datetime
 import random
-
 i=-2
 userstr=''
 
