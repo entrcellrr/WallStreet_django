@@ -48,9 +48,3 @@ def dynamic(request):
 		t+=1
 	uname+='</table>'
  	return HttpResponse(uname)
-
-def dynamic2(request):
-	query=User_transact.objects.all()
-	for o in query:
-		print o
- 	return HttpResponse() 

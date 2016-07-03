@@ -36,6 +36,6 @@ urlpatterns = [
     url(r'^transact/current_queries/$',views_sellbuy.current_queries, name = 'current_queries'), 
     url(r'^transact/share_graph/(?P<name>\w+)/$',views_portfolio.graph, name = 'graph'), 
     url(r'^dynamic/$',views_portfolio.dynamic, name = 'dynamic'), 
-    url(r'^dynamic2/$',views_portfolio.dynamic2, name = 'dynamic2'), 
+#    url(r'^dynamic2/$',views_portfolio.dynamic2, name = 'dynamic2'), 
     
     ]
