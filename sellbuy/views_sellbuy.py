@@ -68,7 +68,6 @@ def timer_update(request):
 def printit():
 	global i
 	global userstr
-	threading.Timer(1.0, printit).start()
 	i=i-1
 	model = Timer.objects.get(name='timerUpdate')
 	if i==5:
@@ -92,7 +91,8 @@ def printit():
 	setattr(model,'time',i)
 	model.save()
 	#print "Hello, World!",i,userstr
-  
+	threading.Timer(1.0, printit).start()
+	
 
 @login_required
 def sellbuyhome(request):
