@@ -87,6 +87,7 @@ def printit():
 		for o in share_querylist:
 			#(1,10) # returns a random integer
 			cp=o.currentprice
+			n = random.random()
 			#the value of n is currently randomized
 			#afterwards will be synce with news also
 			setattr(o,'currentprice',int(float(cp)*float(1+o.queries*float(n/800))))
