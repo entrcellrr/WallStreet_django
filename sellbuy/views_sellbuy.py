@@ -66,15 +66,15 @@ def timer_update(request):
 
 
 def printit():
-	global i
 	global userstr
+	modelt = Timer.objects.get(name='timerUpdate')
+	i=modelt.time
 	i=i-1
-	model = Timer.objects.get(name='timerUpdate')
 	if i<=-1:
 		i=30
 	print i
-	setattr(model,'time',i)
-	model.save()
+	setattr(modelt,'time',i)
+	modelt.save()
 	threading.Timer(1.0, printit).start()
 	if i==5:
 		###############################################the algo to be executed every 30 secs
