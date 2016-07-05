@@ -61,8 +61,11 @@ def current_queries(request):
 
 
 def timer_update(request):
+	
 	time_data=Timer.objects.all().filter(name='timerUpdate')
-	return HttpResponse([(o.time)for o in time_data])
+	time =[(o.time)for o in time_data]
+	print "time shown"+str(time)
+	return HttpResponse(time)
 
 
 def printit():
