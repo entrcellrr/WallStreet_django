@@ -70,6 +70,12 @@ def printit():
 	global userstr
 	i=i-1
 	model = Timer.objects.get(name='timerUpdate')
+	if i<=-1:
+		i=30
+	print i
+	setattr(model,'time',i)
+	model.save()
+	threading.Timer(1.0, printit).start()
 	if i==5:
 		###############################################the algo to be executed every 30 secs
 		share_querylist=Share.objects.all()
@@ -84,15 +90,7 @@ def printit():
 		#	print o.name
 		#share_querylist.save()
 		#######################################################################################
-	if i<=-1:
-		i=30
-	print i
-	#print random.random()
-	setattr(model,'time',i)
-	model.save()
-	#print "Hello, World!",i,userstr
-	threading.Timer(1.0, printit).start()
-	
+
 
 @login_required
 def sellbuyhome(request):
