@@ -77,7 +77,7 @@ def printit():
 	modelt.save()
 	threading.Timer(1.0, printit).start()
 	if i==5:
-		n = random.random()
+		#n = random.random()
 		###############################################the algo to be executed every 30 secs
 		share_querylist=Share.objects.all()
 		for o in share_querylist:
