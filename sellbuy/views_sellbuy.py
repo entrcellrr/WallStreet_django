@@ -77,10 +77,11 @@ def printit():
 	modelt.save()
 	threading.Timer(1.0, printit).start()
 	if i==5:
+		n = random.random()
 		###############################################the algo to be executed every 30 secs
 		share_querylist=Share.objects.all()
 		for o in share_querylist:
-			n = random.random()#(1,10) # returns a random integer
+			#(1,10) # returns a random integer
 			cp=o.currentprice
 			#the value of n is currently randomized
 			#afterwards will be synce with news also
