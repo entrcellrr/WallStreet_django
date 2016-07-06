@@ -73,7 +73,7 @@ countMinute = 0.0
 def UpdatePortfolio():
 	global Matrix,Matrixc,Matrixr
 	for row in range(0 , Matrixr):
-		Matrix[row][Matrixc+1] = row
+		Matrix[row][Matrixc] = row
 	Matrixc+=1
 	print "Updated Portfolio"
 
@@ -88,6 +88,7 @@ def printit():
 		timer=30
 		countMinute+=0.5
 		if countMinute == 1:
+			#################################  to update portfolio
 			UpdatePortfolio()
 			countMinute = 0
 	print timer
@@ -112,18 +113,16 @@ def printit():
 	threading.Timer(1.0, printit).start()
 	
 def dynamic2(request):
-	i = 0
-	global storedata
-	uname='<table>'
-	t=0
-	for o in ShareDetail.objects.all():
-		uname+='<tr>'
-		uname+='<td>'+ str(Matrix[t][0])+'</td>'
-		uname+='<td>'+str(Matrix[t][1])+'</td>'
-		uname+='</tr>'
-		t+=1
-	uname+='</table>'
- 	return HttpResponse(Matrix)
+	
+	global Matrix,Matrixr,Matrixc
+	data='<table>'
+	for row in range (0,Matrixr):
+		data+='<tr>'
+		for col in range (0,Matrixc):
+			data+='<td>'+ str(Matrix[row][col])+'</td>'
+		data+='</tr>'
+	data+='</table>'
+	return HttpResponse(data)
 
 @login_required
 def sellbuyhome(request):

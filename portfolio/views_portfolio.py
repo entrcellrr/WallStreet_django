@@ -30,10 +30,9 @@ def graph(request,name):
 
 i = 0
 Matrix = [['0' for x in range(1000)] for y in range(100)]
-Matrixc = 0
+Matrixc = 1
 Matrixr = 0
 for o in ShareDetail.objects.all():
 	Matrix[Matrixr][0]=o.username
-	Matrix[Matrixr][1]=i
 	Matrixr+=1 
 
