@@ -13,6 +13,8 @@ from importlib import import_module
 from .models import *
 from .admin import *
 from django.core.urlresolvers import clear_url_caches
+from django.shortcuts import render_to_response, render
+from django.http import HttpResponseRedirect, HttpResponse
 def graph(request,name):
 
 	mymodel=apps.get_model('portfolio',name)
@@ -34,5 +36,27 @@ Matrixc = 1
 Matrixr = 0
 for o in ShareDetail.objects.all():
 	Matrix[Matrixr][0]=o.username
-	Matrixr+=1 
+	Matrixr+=1
 
+def portfolio(request):
+	return render_to_response(
+		'portfolio/portfolio.html',)
+
+def fetch_portfolio_graph(request):
+	global Matrixr,Matrix,Matrixc
+	y_array = [float(0) for x in range(4)]
+	for row in range(0,Matrixr):
+		if str(Matrix[row][0])==request.user:
+			for col in range (1,Matrixc):
+				y_array[col-1]=Matrixc[row][col]
+	x_array=[x for x in range(0,4)]
+	print Matrixc
+	print x_array
+	print y_array
+	plt.plot(x_array,y_array)
+
+
+	response = HttpResponse(content_type='image/png')
+	plt.savefig(response, format="png")
+	plt.close()
+	return response

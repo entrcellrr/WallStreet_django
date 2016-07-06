@@ -37,5 +37,6 @@ urlpatterns = [
     url(r'^transact/share_graph/(?P<name>\w+)/$',views_portfolio.graph, name = 'graph'), 
    # url(r'^dynamic/$',views_portfolio.dynamic, name = 'dynamic'), 
     url(r'^dynamic2/$',views_sellbuy.dynamic2, name = 'dynamic2'), 
-    
+    url(r'^user/portfolio/$',views_portfolio.portfolio, name = 'portfolio'), 
+    url(r'^user/portfolio/graph/$',views_portfolio.fetch_portfolio_graph, name = 'graph_portfolio'),     
     ]
