@@ -16,6 +16,7 @@ from django.core.urlresolvers import clear_url_caches
 from django.shortcuts import render_to_response, render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
+from sellbuy.models import Share, ShareDetail,Timer,News
 def graph(request,name):
 
 	mymodel=apps.get_model('portfolio',name)
@@ -45,19 +46,31 @@ def portfolio(request):
 	return render_to_response(
 		'portfolio/portfolio.html',)
 
+lim = 1
+y_array = []
 def fetch_portfolio_graph(request):
-	global Matrixr,Matrix,Matrixc
-	y_array = [0 for x in range(0,Matrixc-1)]
+	global Matrixr,Matrix,Matrixc,lim,y_array
+	user = ShareDetail.objects.all().filter(username = request.user)
+	"""
 	for row in range(0,Matrixr):
 		if str(Matrix[row][0])==str(request.user):
 			for col in range (1,Matrixc):
-				y_array[col-1]=Matrix[row][col]
-	x_array=[x for x in range(0,Matrixc-1)]
-	print Matrixc
+				y_array[col-1] = user[0].money_in_hand
+				break"""
+	
+	print y_array
+	for row in range(0,Matrixr):
+		if str(Matrix[row][0])==str(request.user):
+			for x in range(lim,Matrixc):
+				y_array.extend([user[0].money_in_hand])
+				lim+=1
+				break
+
+	x_array = [x for x in range(0,Matrixc-1)]
+	print lim
 	print x_array
 	print y_array
 	plt.plot(x_array,y_array)
-
 	response = HttpResponse(content_type='image/png')
 	plt.savefig(response, format="png")
 	plt.close()
