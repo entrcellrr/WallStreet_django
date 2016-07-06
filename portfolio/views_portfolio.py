@@ -15,6 +15,7 @@ from .admin import *
 from django.core.urlresolvers import clear_url_caches
 from django.shortcuts import render_to_response, render
 from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib.auth.decorators import login_required
 def graph(request,name):
 
 	mymodel=apps.get_model('portfolio',name)
@@ -37,16 +38,18 @@ Matrixr = 0
 for o in ShareDetail.objects.all():
 	Matrix[Matrixr][0]=o.username
 	Matrixr+=1
-
+@login_required
 def portfolio(request):
+	#dataimg='<img style="-webkit-user-select: none; cursor: zoom-in;" src="./graph/'+request.user+'"width="147" height="110">'
+	#dict={data:da}
 	return render_to_response(
 		'portfolio/portfolio.html',)
 
-def fetch_portfolio_graph(request,name):
+def fetch_portfolio_graph(request):
 	global Matrixr,Matrix,Matrixc
 	y_array = [0 for x in range(0,Matrixc-1)]
 	for row in range(0,Matrixr):
-		if str(Matrix[row][0])==name:
+		if str(Matrix[row][0])==str(request.user):
 			for col in range (1,Matrixc):
 				y_array[col-1]=Matrix[row][col]
 	x_array=[x for x in range(0,Matrixc-1)]
@@ -54,7 +57,6 @@ def fetch_portfolio_graph(request,name):
 	print x_array
 	print y_array
 	plt.plot(x_array,y_array)
-
 
 	response = HttpResponse(content_type='image/png')
 	plt.savefig(response, format="png")
