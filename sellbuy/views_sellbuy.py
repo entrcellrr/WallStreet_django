@@ -69,9 +69,7 @@ def timer_update(request):
 
 
 def printit():
-	threading.Timer(1.0, printit).start()
-	
-	global userstr
+	#global userstr
 	modelt = Timer.objects.get(name='timerUpdate')
 	i=modelt.time
 	i=i-1
@@ -96,6 +94,8 @@ def printit():
 		#	print o.name
 		#share_querylist.save()
 		#######################################################################################
+	threading.Timer(1.0, printit).start()
+	
 
 
 @login_required
