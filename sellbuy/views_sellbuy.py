@@ -12,7 +12,7 @@ from django.core import serializers
 from django.http import JsonResponse
 import json,threading#,datetime
 import random
-from portfolio.views_portfolio import Matrix,Matrixr,Matrixc
+from portfolio import views_portfolio as vp# import Matrix,Matrixr,Matrixc
 i=-2
 userstr=''
 
@@ -71,10 +71,10 @@ def timer_update(request):
 countMinute = 0.0
 
 def UpdatePortfolio():
-	global Matrix,Matrixc,Matrixr
-	for row in range(0 , Matrixr):
-		Matrix[row][Matrixc] = row
-	Matrixc+=1
+	#global Matrix,Matrixc,Matrixr
+	for row in range(0 , vp.Matrixr):
+		vp.Matrix[row][vp.Matrixc] = row
+	vp.Matrixc+=1
 	print "Updated Portfolio"
 
 
@@ -87,7 +87,7 @@ def printit():
 	if timer<=-1:
 		timer=30
 		countMinute+=0.5
-		if countMinute == 1:
+		if countMinute == 0.5:
 			#################################  to update portfolio
 			UpdatePortfolio()
 			countMinute = 0
@@ -114,12 +114,12 @@ def printit():
 	
 def dynamic2(request):
 	
-	global Matrix,Matrixr,Matrixc
+	#global Matrix,Matrixr,Matrixc
 	data='<table>'
-	for row in range (0,Matrixr):
+	for row in range (0,vp.Matrixr):
 		data+='<tr>'
-		for col in range (0,Matrixc):
-			data+='<td>'+ str(Matrix[row][col])+'</td>'
+		for col in range (0,vp.Matrixc):
+			data+='<td>'+ str(vp.Matrix[row][col])+'</td>'
 		data+='</tr>'
 	data+='</table>'
 	return HttpResponse(data)

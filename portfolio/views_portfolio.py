@@ -42,14 +42,14 @@ def portfolio(request):
 	return render_to_response(
 		'portfolio/portfolio.html',)
 
-def fetch_portfolio_graph(request):
+def fetch_portfolio_graph(request,name):
 	global Matrixr,Matrix,Matrixc
-	y_array = [float(0) for x in range(4)]
+	y_array = [0 for x in range(0,Matrixc-1)]
 	for row in range(0,Matrixr):
-		if str(Matrix[row][0])==request.user:
+		if str(Matrix[row][0])==name:
 			for col in range (1,Matrixc):
-				y_array[col-1]=Matrixc[row][col]
-	x_array=[x for x in range(0,4)]
+				y_array[col-1]=Matrix[row][col]
+	x_array=[x for x in range(0,Matrixc-1)]
 	print Matrixc
 	print x_array
 	print y_array
