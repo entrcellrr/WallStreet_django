@@ -12,7 +12,7 @@ from django.core import serializers
 from django.http import JsonResponse
 import json,threading#,datetime
 import random
-from portfolio.views_portfolio import Matrix
+from portfolio.views_portfolio import Matrix,Matrixr,Matrixc
 i=-2
 userstr=''
 
@@ -68,18 +68,32 @@ def timer_update(request):
 	print "time shown"+str(time)
 	return HttpResponse(time)
 
+countMinute = 0.0
+
+def UpdatePortfolio():
+	global Matrix,Matrixc,Matrixr
+	for row in range(0 , Matrixr):
+		Matrix[row][Matrixc+1] = row
+	Matrixc+=1
+	print "Updated Portfolio"
+
 
 def printit():
 	#global userstr
+	global countMinute
 	modelt = Timer.objects.get(name='timerUpdate')
-	i=modelt.time
-	i=i-1
-	if i<=-1:
-		i=30
-	print i
-	setattr(modelt,'time',i)
+	timer=modelt.time
+	timer-=1
+	if timer<=-1:
+		timer=30
+		countMinute+=0.5
+		if countMinute == 1:
+			UpdatePortfolio()
+			countMinute = 0
+	print timer
+	setattr(modelt,'time',timer)
 	modelt.save()
-	if i==5:
+	if timer==5:
 		#n = random.random()
 		###############################################the algo to be executed every 30 secs
 		share_querylist=Share.objects.all()
@@ -104,7 +118,7 @@ def dynamic2(request):
 	t=0
 	for o in ShareDetail.objects.all():
 		uname+='<tr>'
-		uname+='<td>'+Matrix[t][0]+'</td>'
+		uname+='<td>'+ str(Matrix[t][0])+'</td>'
 		uname+='<td>'+str(Matrix[t][1])+'</td>'
 		uname+='</tr>'
 		t+=1
