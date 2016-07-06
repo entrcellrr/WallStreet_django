@@ -27,24 +27,13 @@ def graph(request,name):
 	plt.close()
 	
 	return response
-i=0
-Matrix = [['0' for x in range(10)] for y in range(10)] 
-Matrix[0][0]=i
 
-def dynamic(request):
-	global storedata
-	global i
-	for o in ShareDetail.objects.all():
-		Matrix[i][0]=o.username
-		Matrix[i][1]=i
-		i+=1
-	uname='<table>'
-	t=0
-	for o in ShareDetail.objects.all():
-		uname+='<tr>'
-		uname+='<td>'+Matrix[t][0]+'</td>'
-		uname+='<td>'+str(Matrix[t][1])+'</td>'
-		uname+='</tr>'
-		t+=1
-	uname+='</table>'
- 	return HttpResponse(uname)
+i = 0
+Matrix = [['0' for x in range(1000)] for y in range(100)]
+Matrixc = 0
+Matrixr = 0
+for o in ShareDetail.objects.all():
+	Matrix[Matrixr][0]=o.username
+	Matrix[Matrixr][1]=i
+	Matrixr+=1 
+

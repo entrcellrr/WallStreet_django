@@ -14,6 +14,7 @@ from django.apps import apps
 from django.contrib import admin
 from django.conf import settings
 from portfolio.models import User_transact
+from portfolio.views_portfolio import Matrixr,Matrix
 @csrf_protect
 def register(request):
     if request.method == 'POST':
@@ -44,6 +45,9 @@ def register(request):
             college=form.cleaned_data['college'],
             contact=form.cleaned_data['contact'],
                 )
+            global Matrix,Matrixr
+            Matrix[Matrixr][0] = form.cleaned_data['username']
+            Matrixr+=1
 
             return HttpResponseRedirect('/success/')
     

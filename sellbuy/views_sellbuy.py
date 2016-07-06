@@ -12,6 +12,7 @@ from django.core import serializers
 from django.http import JsonResponse
 import json,threading#,datetime
 import random
+from portfolio.views_portfolio import Matrix
 i=-2
 userstr=''
 
@@ -96,7 +97,19 @@ def printit():
 		#######################################################################################
 	threading.Timer(1.0, printit).start()
 	
-
+def dynamic2(request):
+	i = 0
+	global storedata
+	uname='<table>'
+	t=0
+	for o in ShareDetail.objects.all():
+		uname+='<tr>'
+		uname+='<td>'+Matrix[t][0]+'</td>'
+		uname+='<td>'+str(Matrix[t][1])+'</td>'
+		uname+='</tr>'
+		t+=1
+	uname+='</table>'
+ 	return HttpResponse(Matrix)
 
 @login_required
 def sellbuyhome(request):
