@@ -64,3 +64,6 @@ def fetch_portfolio_graph(request):
 	plt.savefig(response, format="png")
 	plt.close()
 	return response
+def leader_board(request):
+	
+	return response
