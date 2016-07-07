@@ -71,13 +71,17 @@ def timer_update(request):
 countMinute = 0.0
 
 def UpdatePortfolio():
-	#global Matrix,Matrixc,Matrixr
-	for row in range(0 , vp.Matrixr):
-		vp.Matrix[row][vp.Matrixc] = row
+	user = ShareDetail.objects.all()
+	shares = Share.objects.exclude(name='none').all()
+	for o in user:
+		shareworth = float(0)
+		for sh in shares:
+			shareworth += float(getattr(o,str(sh.name))) * float(sh.currentprice)
+		UserNetWorth = float(o.money_in_hand) + shareworth
+		for x in range(0,vp.Matrixr):
+			if(str(vp.Matrix[x][0])==o.username):
+				vp.Matrix[x][vp.Matrixc]=UserNetWorth
 	vp.Matrixc+=1
-	print "Updated Portfolio"
-
-
 def printit():
 	#global userstr
 	global countMinute
