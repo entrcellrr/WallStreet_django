@@ -48,26 +48,25 @@ def portfolio(request):
 
 lim = 1
 y_array = []
+
 def fetch_portfolio_graph(request):
 	global Matrixr,Matrix,Matrixc,lim,y_array
+	shareworth = 0
 	user = ShareDetail.objects.all().filter(username = request.user)
-	"""
-	for row in range(0,Matrixr):
-		if str(Matrix[row][0])==str(request.user):
-			for col in range (1,Matrixc):
-				y_array[col-1] = user[0].money_in_hand
-				break"""
-	
-	print y_array
+	shares = Share.objects.all()
+	for o in shares: 
+		if str(o) != "none": 
+			shareworth += getattr(user[0],str(o)) * shares.get(name = str(o)).currentprice
+	UserNetWorth = user[0].money_in_hand + shareworth
+	print UserNetWorth
 	for row in range(0,Matrixr):
 		if str(Matrix[row][0])==str(request.user):
 			for x in range(lim,Matrixc):
-				y_array.extend([user[0].money_in_hand])
+				y_array.extend([UserNetWorth])
 				lim+=1
 				break
 
 	x_array = [x for x in range(0,Matrixc-1)]
-	print lim
 	print x_array
 	print y_array
 	plt.plot(x_array,y_array)
