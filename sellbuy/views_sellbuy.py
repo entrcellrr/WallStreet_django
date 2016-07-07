@@ -133,7 +133,7 @@ def sellbuyhome(request):
 	if request.method == 'POST':
 		Desc = request.POST.get("ShareDescrib")
 		name_return = request.POST.get("ShareName")
-		qty1=int(request.POST.get("Qty"))
+		qty1= int(request.POST.get('Qty'))
 		user_query=ShareDetail.objects.get(username=request.user)
 		money=user_query.money_in_hand
 			

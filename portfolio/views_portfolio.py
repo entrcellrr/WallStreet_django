@@ -44,7 +44,7 @@ def portfolio(request):
 	#dataimg='<img style="-webkit-user-select: none; cursor: zoom-in;" src="./graph/'+request.user+'"width="147" height="110">'
 	#dict={data:da}
 	return render_to_response(
-		'portfolio/portfolio.html',)
+		'portfolio/portfolio.html',{'name':request.user})
 
 lim = 1
 y_array = []
