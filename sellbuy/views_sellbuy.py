@@ -26,10 +26,10 @@ def current_priceAjax(request):
 	popup='<script language="javascript" type="text/javascript">function popitup(url) {var leftPosition, topPosition;leftPosition = (window.screen.width / 2) - ((800 / 2) + 10);topPosition = (window.screen.height / 2) - ((600 / 2) + 50);newwindow=window.open(url,\'name\',"status=no,height=600,width=800,resizable=yes,left="+ leftPosition + ",top=" + topPosition + ",screenX=" + leftPosition + ",screenY="+ topPosition + ",toolbar=no,menubar=no,scrollbars=no,directories=no");if (window.focus) {newwindow.focus()}return false;}</script>'	
 	
 	strdata='<table>'
-	global i
-	if i is -2:
-		i=30
-		printit()
+	#global i
+	#if i is -2:
+		#i=30
+		#printit()
 	for o in data:
 		qty = ShareDetail.objects.values_list(str(o.name)).filter(username=request.user)
 		var_qty = qty[0][0]
@@ -121,7 +121,7 @@ def printit():
 		#share_querylist.save()
 		#######################################################################################
 	threading.Timer(1.0, printit).start()
-	
+
 def dynamic2(request):
 	
 	#global Matrix,Matrixr,Matrixc
@@ -192,3 +192,4 @@ def sellbuyhome(request):
 	return render_to_response(
    	    'sellbuy/transact.html',variables,
      	)
+threading.Timer(1.0, printit).start()
