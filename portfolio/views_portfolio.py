@@ -83,3 +83,11 @@ def fetch_portfolio_graph(request):
 def leader_board(request):
 	
 	return response
+
+def download(request):
+	global Matrix,Matrixr
+	response = HttpResponse(content_type='text/csv')
+	response['Content-Disposition'] = 'attachment; filename="somefilename.xls"'
+	writer = csv.writer(response)
+	writer.writerows(Matrix)
+	return response

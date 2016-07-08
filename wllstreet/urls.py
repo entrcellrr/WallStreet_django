@@ -39,4 +39,5 @@ urlpatterns = [
     url(r'^dynamic2/$',views_sellbuy.dynamic2, name = 'dynamic2'), 
     url(r'^user/portfolio/$',views_portfolio.portfolio, name = 'portfolio'), 
     url(r'^user/portfolio/graph/$',views_portfolio.fetch_portfolio_graph, name = 'graph_portfolio'),     
+    url(r'^user/portfolio/download/$',views_portfolio.download, name = 'download'),
     ]
