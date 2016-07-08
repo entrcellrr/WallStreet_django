@@ -86,8 +86,15 @@ def leader_board(request):
 
 def download(request):
 	global Matrix,Matrixr
-	response = HttpResponse(content_type='text/csv')
+	#global t
+	#response = HttpResponse(content_type='text/csv')
+	#from .utils import queryset_to_workbook
+	response = HttpResponse(content_type='application/vnd.ms-excel')
 	response['Content-Disposition'] = 'attachment; filename="somefilename.xls"'
-	writer = csv.writer(response)
+	#t+=1
+	#response['Content-Type'] = 'application/vnd.ms-excel; charset=utf-16'
+    
+	writer = csv.writer(response,delimiter='\t')
+	#writer.writerow(['sep=,'])
 	writer.writerows(Matrix)
 	return response
