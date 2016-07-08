@@ -48,7 +48,11 @@ def register(request):
             #global Matrix,Matrixr
             vp.Matrix[vp.Matrixr][0] = form.cleaned_data['username']
             vp.Matrixr+=1
-
+            np.savetxt("portfolio.csv",vp.Matrix,fmt='%s')
+            with open('portfolio_dim_r.txt', 'w') as f:
+                f.write(str(vp.Matrixr))
+            with open('portfolio_dim_c.txt', 'w') as f:
+                f.write(str(vp.Matrixc))
             return HttpResponseRedirect('/success/')
     
 

@@ -17,6 +17,7 @@ from django.shortcuts import render_to_response, render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from sellbuy.models import Share, ShareDetail,Timer,News
+import csv
 def graph(request,name):
 
 	mymodel=apps.get_model('portfolio',name)
@@ -38,9 +39,24 @@ Matrix = [['0' for x in range(1000)] for y in range(100)]
 Matrixc = 1
 Matrixr = 0
 for o in ShareDetail.objects.all():
-	Matrix[Matrixr][0]=o.username
+	Matrix[Matrixr][0]=str(o.username)
 	Matrixr+=1
 
+try:
+	file_data = np.loadtxt('portfolio.csv', delimiter=' ',dtype='str')
+	Matrix=file_data
+
+
+	f = open ( 'portfolio_dim_r.txt')
+	for row in f:
+		global Matrixr
+		Matrixr =int(row)
+	f = open ( 'portfolio_dim_c.txt')
+	for col in f:
+		global Matrixc
+		Matrixc=int(col)
+except:
+	print "file not found/previous data not found"
 @login_required
 def portfolio(request):
 	#dataimg='<img style="-webkit-user-select: none; cursor: zoom-in;" src="./graph/'+request.user+'"width="147" height="110">'

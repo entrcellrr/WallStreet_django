@@ -12,6 +12,7 @@ from django.core import serializers
 from django.http import JsonResponse
 import json,threading#,datetime
 import random
+import numpy as np
 from portfolio import views_portfolio as vp# import Matrix,Matrixr,Matrixc
 i=-2
 userstr=''
@@ -82,6 +83,11 @@ def UpdatePortfolio():
 			if(str(vp.Matrix[x][0])==o.username):
 				vp.Matrix[x][vp.Matrixc]=UserNetWorth
 	vp.Matrixc+=1
+	np.savetxt("portfolio.csv",vp.Matrix,fmt='%s')
+	with open('portfolio_dim_r.txt', 'w') as f:
+		f.write(str(vp.Matrixr))
+	with open('portfolio_dim_c.txt', 'w') as f:
+		f.write(str(vp.Matrixc))
 def printit():
 	#global userstr
 	global countMinute
