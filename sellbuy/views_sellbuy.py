@@ -26,10 +26,12 @@ def current_priceAjax(request):
 	popup='<script language="javascript" type="text/javascript">function popitup(url) {var leftPosition, topPosition;leftPosition = (window.screen.width / 2) - ((800 / 2) + 10);topPosition = (window.screen.height / 2) - ((600 / 2) + 50);newwindow=window.open(url,\'name\',"status=no,height=600,width=800,resizable=yes,left="+ leftPosition + ",top=" + topPosition + ",screenX=" + leftPosition + ",screenY="+ topPosition + ",toolbar=no,menubar=no,scrollbars=no,directories=no");if (window.focus) {newwindow.focus()}return false;}</script>'	
 	
 	strdata='<table>'
-	#global i
-	#if i is -2:
-		#i=30
-		#printit()
+	global i
+	if i is -2:
+		i=30
+		p1=Process(name='fun_call',target=fun_call())
+		p1.start()
+#printit()
 	for o in data:
 		qty = ShareDetail.objects.values_list(str(o.name)).filter(username=request.user)
 		var_qty = qty[0][0]
@@ -72,6 +74,7 @@ def timer_update(request):
 countMinute = 0.0
 
 def UpdatePortfolio():
+	print "updated"
 	user = ShareDetail.objects.all()
 	shares = Share.objects.exclude(name='none').all()
 	for o in user:
@@ -90,6 +93,7 @@ def UpdatePortfolio():
 		f.write(str(vp.Matrixc))
 def printit():
 	#global userstr
+	#print "process="+str(multiprocessing.current_process().name)
 	global countMinute
 	modelt = Timer.objects.get(name='timerUpdate')
 	timer=modelt.time
@@ -120,7 +124,24 @@ def printit():
 		#	print o.name
 		#share_querylist.save()
 		#######################################################################################
-	threading.Timer(1.0, printit).start()
+	#threading.Timer(1.0, printit).start()
+
+from multiprocessing import Process
+import multiprocessing
+import time
+#outer_counter =0
+def fun_call():
+	while(1):
+		
+		pn=Process(name='printit',target=printit())
+		pn.start()
+		#print "process="+str(multiprocessing.current_process().name)
+		pn.join()
+		time.sleep(1)
+		#pn.terminate()
+
+
+	
 
 def dynamic2(request):
 	
@@ -192,4 +213,5 @@ def sellbuyhome(request):
 	return render_to_response(
    	    'sellbuy/transact.html',variables,
      	)
-threading.Timer(1.0, printit).start()
+
+#fun_call()#threading.Timer(1.0, printit).start()
