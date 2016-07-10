@@ -29,7 +29,7 @@ def current_priceAjax(request):
 	global i
 	if i is -2:
 		i=30
-		p1=Process(name='fun_call',target=fun_call())
+		p1=Process(name='fun_call',target=fun_call)
 		p1.start()
 #printit()
 	for o in data:
@@ -72,7 +72,7 @@ def timer_update(request):
 	return HttpResponse(time)
 
 countMinute = 0.0
-
+import pickle
 def UpdatePortfolio():
 	print "updated"
 	user = ShareDetail.objects.all()
@@ -91,6 +91,11 @@ def UpdatePortfolio():
 		f.write(str(vp.Matrixr))
 	with open('portfolio_dim_c.txt', 'w') as f:
 		f.write(str(vp.Matrixc))
+
+from apscheduler.schedulers.background import BackgroundScheduler
+def some_job():
+    print "successfully finished job!"
+#@sched.interval_schedule(hours=2)
 def printit():
 	#global userstr
 	#print "process="+str(multiprocessing.current_process().name)
@@ -125,23 +130,10 @@ def printit():
 		#share_querylist.save()
 		#######################################################################################
 	#threading.Timer(1.0, printit).start()
+apsched = BackgroundScheduler()
+apsched.start()
+apsched.add_job(printit, 'interval', seconds=1)
 
-from multiprocessing import Process
-import multiprocessing
-import time
-#outer_counter =0
-def fun_call():
-	while(1):
-		
-		pn=Process(name='printit',target=printit())
-		pn.start()
-		#print "process="+str(multiprocessing.current_process().name)
-		pn.join()
-		time.sleep(1)
-		#pn.terminate()
-
-
-	
 
 def dynamic2(request):
 	
@@ -213,5 +205,3 @@ def sellbuyhome(request):
 	return render_to_response(
    	    'sellbuy/transact.html',variables,
      	)
-
-#fun_call()#threading.Timer(1.0, printit).start()
