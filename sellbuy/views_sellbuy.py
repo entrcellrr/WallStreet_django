@@ -93,9 +93,6 @@ def UpdatePortfolio():
 		f.write(str(vp.Matrixc))
 
 from apscheduler.schedulers.background import BackgroundScheduler
-def some_job():
-    print "successfully finished job!"
-#@sched.interval_schedule(hours=2)
 def printit():
 	#global userstr
 	#print "process="+str(multiprocessing.current_process().name)
