@@ -32,31 +32,18 @@ def graph(request,name):
 	plt.close()
 	
 	return response
-
-i = 0
-
-Matrix = [['0' for x in range(1000)] for y in range(100)]
-Matrixc = 1
-Matrixr = 0
-for o in ShareDetail.objects.all():
-	Matrix[Matrixr][0]=str(o.username)
-	Matrixr+=1
-
-try:
-	file_data = np.loadtxt('portfolio.csv', delimiter=' ',dtype='str')
-	Matrix=file_data
+'''
+file_data = np.loadtxt('portfolio.csv', delimiter=' ',dtype='str')
+Matrix=file_data
 
 
-	f = open ( 'portfolio_dim_r.txt')
-	for row in f:
-		global Matrixr
-		Matrixr =int(row)
-	f = open ( 'portfolio_dim_c.txt')
-	for col in f:
-		global Matrixc
-		Matrixc=int(col)
-except:
-	print "file not found/previous data not found"
+f = open ( 'portfolio_dim_r.txt')
+for row in f:
+	Matrixr =int(row)
+f = open ( 'portfolio_dim_c.txt')
+for col in f:
+	Matrixc=int(col)
+'''
 @login_required
 def portfolio(request):
 	#dataimg='<img style="-webkit-user-select: none; cursor: zoom-in;" src="./graph/'+request.user+'"width="147" height="110">'
@@ -65,7 +52,16 @@ def portfolio(request):
 		'portfolio/portfolio.html',{'name':request.user})
 
 def fetch_portfolio_graph(request):
-	global Matrixr,Matrix,Matrixc
+	file_data = np.loadtxt('portfolio.csv', delimiter=' ',dtype='str')
+	Matrix=file_data
+	f = open ( 'portfolio_dim_r.txt')
+	for row in f:
+		Matrixr =int(row)
+	f = open ( 'portfolio_dim_c.txt')
+	for col in f:
+		Matrixc=int(col)
+
+
 	y_array = [float(0) for x in range(0,Matrixc-1)]
 	for x in range(0,Matrixr):
 		if(str(Matrix[x][0])==str(request.user)):
@@ -85,8 +81,14 @@ def leader_board(request):
 	return response
 
 def download(request):
-	global Matrix,Matrixr
-	#global t
+	file_data = np.loadtxt('portfolio.csv', delimiter=' ',dtype='str')
+	Matrix=file_data
+	f = open ( 'portfolio_dim_r.txt')
+	for row in f:
+		Matrixr =int(row)
+	f = open ( 'portfolio_dim_c.txt')
+	for col in f:
+		Matrixc=int(col)#global t
 	#response = HttpResponse(content_type='text/csv')
 	#from .utils import queryset_to_workbook
 	response = HttpResponse(content_type='application/vnd.ms-excel')

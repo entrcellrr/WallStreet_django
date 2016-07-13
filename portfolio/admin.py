@@ -15,6 +15,7 @@ class FacebookAdmin(admin.ModelAdmin):
 	list_display=["x","y"]
 admin.site.register(Facebook,FacebookAdmin)
 
-class User_transactAdmin(admin.ModelAdmin):
+'''class User_transactAdmin(admin.ModelAdmin):
 	list_display=["username"]
 admin.site.register(User_transact,User_transactAdmin)
+'''

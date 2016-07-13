@@ -13,7 +13,7 @@ from django.db import models
 from django.apps import apps
 from django.contrib import admin
 from django.conf import settings
-from portfolio.models import User_transact
+#from portfolio.models import User_transact
 from portfolio import views_portfolio as vp# import Matrixr,Matrix
 @csrf_protect
 def register(request):
@@ -34,9 +34,9 @@ def register(request):
             username=form.cleaned_data['username'],
             id=number
                 )
-            user_transact=User_transact.objects.create(
-            username=form.cleaned_data['username'],
-                )
+            #user_transact=User_transact.objects.create(
+            #username=form.cleaned_data['username'],
+            #    )
             userdetail=UserDetail.objects.create(
             name=form.cleaned_data['username'],
             id=number,

@@ -13,7 +13,8 @@ from django.http import JsonResponse
 import json,threading#,datetime
 import random
 import numpy as np
-from portfolio import views_portfolio as vp# import Matrix,Matrixr,Matrixc
+import multiprocessing as mp
+#from portfolio import views_portfolio as vp# import Matrix,Matrixr,Matrixc
 i=-2
 userstr=''
 
@@ -72,8 +73,16 @@ def timer_update(request):
 	return HttpResponse(time)
 
 countMinute = 0.0
-import pickle
+#import pickle
 def UpdatePortfolio():
+	file_data = np.loadtxt('portfolio.csv', delimiter=' ',dtype='str')
+	Matrix=file_data
+	f = open ( 'portfolio_dim_r.txt')
+	for row in f:
+		Matrixr =int(row)
+	f = open ( 'portfolio_dim_c.txt')
+	for col in f:
+		Matrixc=int(col)
 	print "updated"
 	user = ShareDetail.objects.all()
 	shares = Share.objects.exclude(name='none').all()
@@ -82,17 +91,17 @@ def UpdatePortfolio():
 		for sh in shares:
 			shareworth += float(getattr(o,str(sh.name))) * float(sh.currentprice)
 		UserNetWorth = float(o.money_in_hand) + shareworth
-		for x in range(0,vp.Matrixr):
-			if(str(vp.Matrix[x][0])==o.username):
-				vp.Matrix[x][vp.Matrixc]=UserNetWorth
-	vp.Matrixc+=1
-	np.savetxt("portfolio.csv",vp.Matrix,fmt='%s')
+		for x in range(0,Matrixr):
+			if(str(Matrix[x][0])==o.username):
+				Matrix[x][Matrixc]=UserNetWorth
+	Matrixc+=1
+	np.savetxt("portfolio.csv",Matrix,fmt='%s')
 	with open('portfolio_dim_r.txt', 'w') as f:
-		f.write(str(vp.Matrixr))
+		f.write(str(Matrixr))
 	with open('portfolio_dim_c.txt', 'w') as f:
-		f.write(str(vp.Matrixc))
+		f.write(str(Matrixc))
 
-from apscheduler.schedulers.background import BackgroundScheduler
+#from apscheduler.schedulers.background import BackgroundScheduler
 def printit():
 	#global userstr
 	#print "process="+str(multiprocessing.current_process().name)
@@ -127,19 +136,34 @@ def printit():
 		#share_querylist.save()
 		#######################################################################################
 	#threading.Timer(1.0, printit).start()
-apsched = BackgroundScheduler()
-apsched.start()
-apsched.add_job(printit, 'interval', seconds=1)
+#apsched = BackgroundScheduler()
+#apsched.start()
+#apsched.add_job(printit, 'interval', seconds=1)
+import time
+def fun_call():
+	while(1):
+		printit()
+		time.sleep(1)
 
 
+p = mp.Process(target=fun_call)#, args=('bob',))
+p.start()
 def dynamic2(request):
+	file_data = np.loadtxt('portfolio.csv', delimiter=' ',dtype='str')
+	Matrix=file_data
+	f = open ( 'portfolio_dim_r.txt')
+	for row in f:
+		Matrixr =int(row)
+	f = open ( 'portfolio_dim_c.txt')
+	for col in f:
+		Matrixc=int(col)
 	
 	#global Matrix,Matrixr,Matrixc
 	data='<table>'
-	for row in range (0,vp.Matrixr):
+	for row in range (0,Matrixr):
 		data+='<tr>'
-		for col in range (0,vp.Matrixc):
-			data+='<td>'+ str(vp.Matrix[row][col])+'</td>'
+		for col in range (0,Matrixc):
+			data+='<td>'+ str(Matrix[row][col])+'</td>'
 		data+='</tr>'
 	data+='</table>'
 	return HttpResponse(data)
