@@ -1,7 +1,5 @@
-# WallStreet
-
 working server at:
-http://aditya999123.pythonanywhere.com/ 
+http://wallstreet.pythonanywhere.com/
 This is the django/python implementation of the wallstreet project. Developed by E-CELL of NIT Raipur.
 To run and test the server after pulling the project follow the given steps :
 1. cd into wllstreet dorectory you just pulled.
