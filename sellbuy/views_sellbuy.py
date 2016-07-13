@@ -27,11 +27,11 @@ def current_priceAjax(request):
 	popup='<script language="javascript" type="text/javascript">function popitup(url) {var leftPosition, topPosition;leftPosition = (window.screen.width / 2) - ((800 / 2) + 10);topPosition = (window.screen.height / 2) - ((600 / 2) + 50);newwindow=window.open(url,\'name\',"status=no,height=600,width=800,resizable=yes,left="+ leftPosition + ",top=" + topPosition + ",screenX=" + leftPosition + ",screenY="+ topPosition + ",toolbar=no,menubar=no,scrollbars=no,directories=no");if (window.focus) {newwindow.focus()}return false;}</script>'	
 	
 	strdata='<table>'
-	#global i
-	#if i is -2:
-	#	i=30
-		#p1=Process(name='fun_call',target=fun_call)
-		#p1.start()
+	global i
+	if i is -2:
+		i=30
+		p1=mp.Process(name='fun_call',target=fun_call)
+		p1.start()
 #printit()
 	for o in data:
 		qty = ShareDetail.objects.values_list(str(o.name)).filter(username=request.user)
@@ -146,8 +146,6 @@ def fun_call():
 		time.sleep(1)
 
 
-p = mp.Process(target=fun_call)#, args=('bob',))
-p.start()
 def dynamic2(request):
 	file_data = np.loadtxt('portfolio.csv', delimiter=' ',dtype='str')
 	Matrix=file_data
