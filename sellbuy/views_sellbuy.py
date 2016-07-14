@@ -97,7 +97,7 @@ def UpdatePortfolio():
 			if(str(Matrix[x][0])==o.username):
 				Matrix[x][Matrixc]=UserNetWorth
 	Matrixc+=1
-	if Matrixc>=5:
+	if Matrixc>=950:
 		Matrixc=2
 	np.savetxt("portfolio.csv",Matrix,fmt='%s')
 	with open('portfolio_dim_r.txt', 'w') as f:
