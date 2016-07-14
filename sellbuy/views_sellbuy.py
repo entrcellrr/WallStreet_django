@@ -86,6 +86,8 @@ def UpdatePortfolio():
 	print "updated"
 	user = ShareDetail.objects.all()
 	shares = Share.objects.exclude(name='none').all()
+	print "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMatrixc="+str(Matrixc)
+	
 	for o in user:
 		shareworth = float(0)
 		for sh in shares:
@@ -95,6 +97,8 @@ def UpdatePortfolio():
 			if(str(Matrix[x][0])==o.username):
 				Matrix[x][Matrixc]=UserNetWorth
 	Matrixc+=1
+	if Matrixc>=5:
+		Matrixc=2
 	np.savetxt("portfolio.csv",Matrix,fmt='%s')
 	with open('portfolio_dim_r.txt', 'w') as f:
 		f.write(str(Matrixr))
