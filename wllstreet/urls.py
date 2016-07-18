@@ -22,6 +22,7 @@ from portfolio import views_portfolio
 
 urlpatterns = [
     url(r'^$',views.start,name='start'),
+    url(r'^login_check/$', views.login_check, name = 'login_check'),
     url(r'^login/$', 'django.contrib.auth.views.login'),
     url(r'^admin/', admin.site.urls),
     url(r'^logout/$', views.logout_page, name = 'logout_page'),

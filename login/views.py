@@ -16,6 +16,11 @@ from django.conf import settings
 #from portfolio.models import User_transact
 #from portfolio import views_portfolio as vp# import Matrixr,Matrix
 @csrf_protect
+def login_check(request):
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('/home')
+    else:
+        return HttpResponseRedirect('/login')
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
