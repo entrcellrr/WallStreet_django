@@ -69,7 +69,7 @@ def timer_update(request):
 	
 	time_data=Timer.objects.all().filter(name='timerUpdate')
 	time =[(o.time)for o in time_data]
-	print "time shown"+str(time)
+	#print "time shown"+str(time)
 	return HttpResponse(time)
 
 countMinute = 0.0
