@@ -182,44 +182,46 @@ def sellbuyhome(request):
 		try:
 			qty1= int(request.POST.get('Qty'))
 		except:
-			qty1=0
+			qty1=int(0)
 		user_query=ShareDetail.objects.get(username=request.user)
 		money=user_query.money_in_hand
 			
 		share_query=Share.objects.get(name=name_return)
 		share_price=share_query.currentprice
 		qty_share_query=share_query.queries
-		if request.POST.get("buy")=='BUY':
+		if qty1>=int(0):
+			if request.POST.get("buy")=='BUY':
 			
 			
-			if(qty1*share_price>money):
-				error='Money is less.Only '+str(int(money/share_price))+' shares can be bought'
-			else:
+				if(qty1*share_price>money):
+					error='Money is less.Only '+str(int(money/share_price))+' shares can be bought'
+				else:
+					var_qty2 = ShareDetail.objects.values_list(name_return).filter(username=request.user)
+					qty2 = var_qty2[0][0]
+					setattr(user_query,name_return,qty1+qty2)
+				
+					setattr(user_query,'money_in_hand',money-(share_price*qty1))
+					user_query.save()
+					setattr(share_query,'queries',qty1+qty_share_query)
+					share_query.save()
+					#print "user money"+str(user_query.money_in_hand)
+					error='success'
+
+			if request.POST.get("sell")=='SELL':
+
 				var_qty2 = ShareDetail.objects.values_list(name_return).filter(username=request.user)
 				qty2 = var_qty2[0][0]
-				setattr(user_query,name_return,qty1+qty2)
-				
-				setattr(user_query,'money_in_hand',money-(share_price*qty1))
-				user_query.save()
-				setattr(share_query,'queries',qty1+qty_share_query)
-				share_query.save()
-				#print "user money"+str(user_query.money_in_hand)
-				error='success'
-
-		if request.POST.get("sell")=='SELL':
-
-			var_qty2 = ShareDetail.objects.values_list(name_return).filter(username=request.user)
-			qty2 = var_qty2[0][0]
-			if qty1<=qty2:
-				setattr(user_query,name_return,qty2-qty1)
-				setattr(user_query,'money_in_hand',money+share_price*qty1)
-				user_query.save()
-				setattr(share_query,'queries',qty_share_query-qty1)
-				share_query.save()
-				error='success'
-			else:
-				error='you dont have that many shares'
-		
+				if qty1<=qty2:
+					setattr(user_query,name_return,qty2-qty1)
+					setattr(user_query,'money_in_hand',money+share_price*qty1)
+					user_query.save()
+					setattr(share_query,'queries',qty_share_query-qty1)
+					share_query.save()
+					error='success'
+				else:
+					error='you dont have that many shares'
+		else:
+			error='we take our event rather seriously'
 	user_query=ShareDetail.objects.get(username=request.user)
 	form = ListForm(None, SDesc=Desc, Sname = name_return,UserName=request.user)
 	variables = RequestContext(request,{
