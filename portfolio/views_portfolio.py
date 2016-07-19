@@ -1,9 +1,9 @@
 from django.http import HttpResponse
 import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
-from matplotlib import pylab
-from pylab import *
+#matplotlib.use('Agg')
+#import matplotlib.pyplot as plt
+#from matplotlib import pylab
+#from pylab import *
 from sellbuy .models import *
 from django.db import models
 from django.apps import apps
@@ -18,27 +18,25 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from sellbuy.models import Share, ShareDetail,Timer,News
 import csv
+from plotly.offline import plot
+from plotly.graph_objs import Bar, Scatter, Figure, Layout
 def graph(request,name):
-	from plotly.offline import plot
-	from plotly.graph_objs import Bar, Scatter, Figure, Layout
+	
 	
 	mymodel=apps.get_model('portfolio',name)
 
-	query_x = mymodel.objects.values_list('x')
-	query_y = mymodel.objects.values_list('y')
+	#'query_x = mymodel.objects.values_list('x')
+	#'query_y = mymodel.objects.values_list('y')
 	x1=[]
-	for o in mymodel.objects.all():
-			
-		x1.append(o.x)
-
 	y1=[]
 	for o in mymodel.objects.all():
 			
+		x1.append(o.x)
 		y1.append(int(o.y))
 
-	#plt.plot(query_x,query_y)
-	from plotly.graph_objs import Bar, Scatter, Figure, Layout
 
+	#plt.plot(query_x,query_y)
+	
 
 	return HttpResponse(plot([Bar(x=x1, y=y1)],auto_open=False,output_type='div'))
 	#return plot(Scatter(x=query_x,y=query_y))
