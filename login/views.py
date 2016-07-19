@@ -15,6 +15,7 @@ from django.contrib import admin
 from django.conf import settings
 #from portfolio.models import User_transact
 #from portfolio import views_portfolio as vp# import Matrixr,Matrix
+import numpy as np
 @csrf_protect
 def login_check(request):
     if request.user.is_authenticated():
@@ -51,7 +52,7 @@ def register(request):
             contact=form.cleaned_data['contact'],
                 )
             #global Matrix,Matrixr
-            import numpy as np
+            
             file_data = np.loadtxt('portfolio.csv', delimiter=' ',dtype='str')
             Matrix=file_data
             f = open ( 'portfolio_dim_r.txt')
