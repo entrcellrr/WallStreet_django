@@ -7,8 +7,8 @@ class RegistrationForm(forms.Form):
 
 	username = forms.RegexField(regex=r'^\w+$', widget=forms.TextInput(attrs=dict(required=True, max_length=30)), label=_("Username"), error_messages={ 'invalid': _("This value must contain only letters, numbers and underscores.") })
 	email = forms.EmailField(widget=forms.TextInput(attrs=dict(required=True, max_length=30)), label=_("Email address"))
-	college = forms.RegexField(regex=r'^\w+$', widget=forms.TextInput(attrs=dict(required=True, max_length=30)), label=_("College"), error_messages={ 'invalid': _("This value must contain only letters, numbers and underscores.") })
-	branch = forms.RegexField(regex=r'^\w+$', widget=forms.TextInput(attrs=dict(required=True, max_length=30)), label=_("Branch"), error_messages={ 'invalid': _("This value must contain only letters, numbers and underscores.") })
+	college = forms.CharField(regex=r'^\w+$', widget=forms.TextInput(attrs=dict(required=True, max_length=30)), label=_("College"), error_messages={ 'invalid': _("This value must contain only letters, numbers and underscores.") })
+	branch = forms.CharField(regex=r'^\w+$', widget=forms.TextInput(attrs=dict(required=True, max_length=30)), label=_("Branch"), error_messages={ 'invalid': _("This value must contain only letters, numbers and underscores.") })
 	password1 = forms.CharField(widget=forms.PasswordInput(attrs=dict(required=True, max_length=30, render_value=False)), label=_("Password"))
 	password2 = forms.CharField(widget=forms.PasswordInput(attrs=dict(required=True, max_length=30, render_value=False)), label=_("Password (again)"))
 	contact=forms.RegexField(regex=r'^\w+$', widget=forms.TextInput(attrs=dict(required=True, max_length=30)), label=_("Contact"), error_messages={ 'invalid': _("This value must contain only letters, numbers and underscores.") })
