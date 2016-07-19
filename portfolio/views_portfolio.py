@@ -19,19 +19,36 @@ from django.contrib.auth.decorators import login_required
 from sellbuy.models import Share, ShareDetail,Timer,News
 import csv
 def graph(request,name):
-
+	from plotly.offline import plot
+	from plotly.graph_objs import Bar, Scatter, Figure, Layout
+	
 	mymodel=apps.get_model('portfolio',name)
 
 	query_x = mymodel.objects.values_list('x')
 	query_y = mymodel.objects.values_list('y')
-	plt.plot(query_x,query_y)
+	x1=[]
+	for o in mymodel.objects.all():
+			
+		x1.append(o.x)
 
-	response = HttpResponse(content_type='image/png')
-	# create your image as usual, e.g. pylab.plot(...)
-	plt.savefig(response, format="png")
-	plt.close()
+	y1=[]
+	for o in mymodel.objects.all():
+			
+		y1.append(int(o.y))
+
+	#plt.plot(query_x,query_y)
+	from plotly.graph_objs import Bar, Scatter, Figure, Layout
+
+
+	return HttpResponse(plot([Bar(x=x1, y=y1)],auto_open=False,output_type='div'))
+	#return plot(Scatter(x=query_x,y=query_y))
 	
-	return response
+	#response = HttpResponse(content_type='image/png')
+	# create your image as usual, e.g. pylab.plot(...)
+	#plt.savefig(response, format="png")
+	#plt.close()
+	
+	#return response
 '''
 file_data = np.loadtxt('portfolio.csv', delimiter=' ',dtype='str')
 Matrix=file_data
