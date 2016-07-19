@@ -51,6 +51,7 @@ def register(request):
             contact=form.cleaned_data['contact'],
                 )
             #global Matrix,Matrixr
+            import numpy as np
             file_data = np.loadtxt('portfolio.csv', delimiter=' ',dtype='str')
             Matrix=file_data
             f = open ( 'portfolio_dim_r.txt')
