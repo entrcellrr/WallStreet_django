@@ -20,6 +20,7 @@ from sellbuy.models import Share, ShareDetail,Timer,News
 import csv
 from plotly.offline import plot
 from plotly.graph_objs import Bar, Scatter, Figure, Layout
+import numpy as np
 def graph(request,name):
 	
 	
@@ -39,34 +40,13 @@ def graph(request,name):
 	
 
 	return HttpResponse(plot([Bar(x=x1, y=y1)],auto_open=False,output_type='div'))
-	#return plot(Scatter(x=query_x,y=query_y))
-	
-	#response = HttpResponse(content_type='image/png')
-	# create your image as usual, e.g. pylab.plot(...)
-	#plt.savefig(response, format="png")
-	#plt.close()
-	
-	#return response
-'''
-file_data = np.loadtxt('portfolio.csv', delimiter=' ',dtype='str')
-Matrix=file_data
 
-
-f = open ( 'portfolio_dim_r.txt')
-for row in f:
-	Matrixr =int(row)
-f = open ( 'portfolio_dim_c.txt')
-for col in f:
-	Matrixc=int(col)
-'''
 @login_required
 def portfolio(request):
 	#dataimg='<img style="-webkit-user-select: none; cursor: zoom-in;" src="./graph/'+request.user+'"width="147" height="110">'
 	#dict={data:da}
-	return render_to_response(
-		'portfolio/portfolio.html',{'name':request.user})
-
-def fetch_portfolio_graph(request):
+	
+#def fetch_portfolio_graph(request):
 	file_data = np.loadtxt('portfolio.csv', delimiter=' ',dtype='str')
 	Matrix=file_data
 	f = open ( 'portfolio_dim_r.txt')
@@ -81,16 +61,19 @@ def fetch_portfolio_graph(request):
 	for x in range(0,Matrixr):
 		if(str(Matrix[x][0])==str(request.user)):
 			for col in range(1,Matrixc):
-				y_array[col-1]=Matrix[x][col]
+				y_array[col-1]=int(float(Matrix[x][col]))
 	
 	x_array = [x for x in range(0,Matrixc-1)]
 	print x_array
 	print y_array
-	plt.plot(x_array,y_array)
-	response = HttpResponse(content_type='image/png')
+	#plt.plot(x_array,y_array)
+	'''response = HttpResponse(content_type='image/png')
 	plt.savefig(response, format="png")
 	plt.close()
-	return response
+	'''
+	graph_str=plot([Scatter(x=x_array, y=y_array)],auto_open=False,output_type='div')
+	return render_to_response('portfolio/portfolio.html',{'name':request.user,'graph':graph_str})
+
 def leader_board(request):
 	
 	return response

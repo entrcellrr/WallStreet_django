@@ -5,7 +5,9 @@
 </head>
 <body onload="loadDoc()">
 {{ name }}
-<img src="./graph/" height=400 width =500>
-<div id="graph"></div>
+<div id ="graph">
+  {{graph|safe}}
+</div>
+
 </body>
 </html>
