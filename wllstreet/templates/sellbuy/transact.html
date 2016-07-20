@@ -99,6 +99,7 @@ loadNews();
 setInterval(function(){
      $.get('./timer_update', function(data) {
         $('#timer').html('refresh in : '+data+' sec');    
+        if(data=='0')loadDoc();
     });
 },1000);
 //################################################################################################3
