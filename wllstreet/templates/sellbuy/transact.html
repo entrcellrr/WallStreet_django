@@ -77,7 +77,7 @@ function popitup(url) {
 <br>
 <br>
 
-
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 function loadDoc() {
  var xhttp = new XMLHttpRequest();
@@ -97,15 +97,10 @@ loadNews();
  
 //#################################################################################################
 setInterval(function(){
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {var response_data=xhttp.responseText;
-     if(response_data=='0'){loadDoc();}
-      document.getElementById("timer").innerHTML = "refresh in : "+response_data+" sec";
-  
-  };
-  xhttp.open("GET", "./timer_update/", true);
-  xhttp.send();},950);
-
+     $.get('./timer_update', function(data) {
+        $('#timer').html('refresh in : '+data+' sec');    
+    });
+},1000);
 //################################################################################################3
 function loadNews(){
   var xhttp = new XMLHttpRequest();
