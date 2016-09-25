@@ -46,10 +46,12 @@ def current_priceAjax(request):
 def current_news(request):
 
 	data=News.objects.all()
+	share = Share.objects.get(id = '26')
+	x = share.name
 	userstr=str(request.user)
 	strnews='<marquee onmouseover="this.stop()" onmouseout="this.start()" direction="up" height =40 scrolldelay=300><table>'
 	for o in data:
-		strnews+='<tr><td>'+str(o.news)+'</td></tr>'
+		strnews+='<tr><td>'+ str(x) +', '+ str(o.news)+'</td></tr>'
 	strnews+='</table></marquee>'	
 	
 	#strdata+='</table></marquee>'	
