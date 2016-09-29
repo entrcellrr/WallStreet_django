@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WALLSTREET</title>
+</head>
+<bodym>
+
+<div id="board"></div>
+<script src="/static/js/jquery-latest.js"></script>
+<script>
+setInterval(function(){
+     $.get('./get_leaderboard', function(data) {
+        $('#board').html(data);    
+        // if(data=='0')loadDoc();
+    });
+},1000);
+</script>
+
+
+</body>
+</html>
