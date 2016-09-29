@@ -18,7 +18,9 @@ from django.conf.urls import url
 from login import views
 from sellbuy import views_sellbuy
 from portfolio import views_portfolio
-
+from leaderboard.views import leaderboard,get_leaderboard
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^$',views.start,name='start'),
@@ -41,5 +43,7 @@ urlpatterns = [
     url(r'^user/portfolio/$',views_portfolio.portfolio, name = 'portfolio'), 
     #url(r'^user/portfolio/graph/$',views_portfolio.fetch_portfolio_graph, name = 'graph_portfolio'),     
     url(r'^user/portfolio/download/$',views_portfolio.download, name = 'download'),
+    url(r'^leaderboard/$',leaderboard),
+    url(r'^leaderboard/get_leaderboard/$',get_leaderboard),
     #url(r'^checkdb/$',views_portfolio.checkdb, name = 'checkdb'),
-    ]
+    ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

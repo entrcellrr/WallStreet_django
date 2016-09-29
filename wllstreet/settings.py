@@ -25,7 +25,7 @@ SECRET_KEY = 'r6!a&s&rw@y1m3-v(*vsjbxakms53)_2^gbvpmt)ou)o_+5y7z'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []#['wallstreet']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'login',
     'sellbuy',
     'portfolio',
+    'leaderboard',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -114,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
-
+#SESSION_COOKIE_AGE=60
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -130,3 +131,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+#STATIC_ROOT = 'static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    '/var/www/static/',
+]
