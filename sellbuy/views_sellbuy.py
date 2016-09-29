@@ -28,11 +28,13 @@ def current_priceAjax(request):
 	
 	strdata='<table>'
 	global i
-	if i is -2:
+	print "i=================",i
+	if i ==-2:
+		print "timer_started"
 		i=30
 		p1=mp.Process(name='fun_call',target=fun_call)
 		p1.start()
-#printit()
+
 	for o in data:
 		qty = ShareDetail.objects.values_list(str(o.name)).filter(username=request.user)
 		var_qty = qty[0][0]
@@ -46,12 +48,16 @@ def current_priceAjax(request):
 def current_news(request):
 
 	data=News.objects.all()
-	share = Share.objects.get(id = '26')
-	x = share.name
+	
+	
 	userstr=str(request.user)
 	strnews='<marquee onmouseover="this.stop()" onmouseout="this.start()" direction="up" height =40 scrolldelay=300><table>'
+	#xyz=0
 	for o in data:
-		strnews+='<tr><td>'+ str(x) +', '+ str(o.news)+'</td></tr>'
+		#share = Share.objects.get(id = xyz)
+		#x = share.name
+		#xyz=xyz+1
+		strnews+='<tr><td>'+ ''+ str(o.news)+'</td></tr>'
 	strnews+='</table></marquee>'	
 	
 	#strdata+='</table></marquee>'	
@@ -147,6 +153,9 @@ def printit():
 #apsched.add_job(printit, 'interval', seconds=1)
 import time
 def fun_call():
+
+	from django.db import connection
+	connection.close()
 	while(1):
 		printit()
 		time.sleep(1)
@@ -175,7 +184,7 @@ def dynamic2(request):
 @login_required
 def sellbuyhome(request):
 	Desc='All'
-	name_return = 'share1'
+	name_return = 'ACME'
 	error=''
 	print"??????????????????????????????????????????????????????????????"+str(request.user)
 	if request.method == 'POST':
@@ -224,7 +233,9 @@ def sellbuyhome(request):
 					error='you dont have that many shares'
 		else:
 			error='we take our event rather seriously'
+	print request.user
 	user_query=ShareDetail.objects.get(username=request.user)
+	print "line crossed"
 	form = ListForm(None, SDesc=Desc, Sname = name_return,UserName=request.user)
 	variables = RequestContext(request,{
 		'form':form,

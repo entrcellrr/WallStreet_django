@@ -74,10 +74,6 @@ def portfolio(request):
 	graph_str=plot([Scatter(x=x_array, y=y_array)],auto_open=False,output_type='div')
 	return render_to_response('portfolio/portfolio.html',{'name':request.user,'graph':graph_str})
 
-def leader_board(request):
-	
-	return response
-
 def download(request):
 	file_data = np.loadtxt('portfolio.csv', delimiter=' ',dtype='str')
 	Matrix=file_data
@@ -98,3 +94,8 @@ def download(request):
 	#writer.writerow(['sep=,'])
 	writer.writerows(Matrix)
 	return response
+
+# with open('news_updated.csv') as f:
+# ...     reader=csv.reader(f)
+# ...     for row in reader:
+# ...         News.objects.create(news=str(row[0]),weight=int(row[1]))
