@@ -15,8 +15,10 @@ import random
 import numpy as np
 import multiprocessing as mp
 #from portfolio import views_portfolio as vp# import Matrix,Matrixr,Matrixc
+from sellbuy.WallStreet import SharePriceOutputWithoutNews as SPW
 i=-2
 userstr=''
+
 
 @login_required
 def current_priceAjax(request):
@@ -118,7 +120,7 @@ def UpdatePortfolio():
 		f.write(str(Matrixc))
 
 #from apscheduler.schedulers.background import BackgroundScheduler
-def printit():
+def printit(iter_count):
 	#global userstr
 	#print "process="+str(multiprocessing.current_process().name)
 	global countMinute
@@ -126,7 +128,7 @@ def printit():
 	timer=modelt.time
 	timer-=1
 	if timer<=-1:
-		timer=30
+		timer=5
 		countMinute+=0.5
 		if countMinute == 0.5:
 			#################################  to update portfolio
@@ -138,16 +140,20 @@ def printit():
 	if timer==5:
 		#n = random.random()
 		###############################################the algo to be executed every 30 secs
-		share_querylist=Share.objects.all()
+		share_querylist=Share.objects.all().exclude(name='None')
+		share_index=0
 		for o in share_querylist:
 			#(1,10) # returns a random integer
 			cp=o.currentprice
-			n = random.random()
-			#the value of n is currently randomized
-			#afterwards will be synce with news also
-			setattr(o,'currentprice',int(float(cp)*float(1+o.queries*float(n/800))))
+			print "sh index",share_index," sh name",o.name
+			print iter_count
+			n = SPW(share_index,cp,iter_count/5)
+			print n
+			c=1.01#afterwards will be synce with news also
+			setattr(o,'currentprice',n*c)
 			setattr(o,'queries',0)	
 			o.save()
+			share_index+=1
 		#	print o.name
 		#share_querylist.save()
 		#######################################################################################
@@ -156,12 +162,16 @@ def printit():
 #apsched.start()
 #apsched.add_job(printit, 'interval', seconds=1)
 import time
+	
 def fun_call():
-
 	from django.db import connection
 	connection.close()
 	while(1):
-		printit()
+		modeliter = Timer.objects.get(name='iter')
+		iter_count=modeliter.time
+		printit(iter_count)
+		setattr(modeliter,'time',iter_count+1)
+		modeliter.save()
 		time.sleep(1)
 
 

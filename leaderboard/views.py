@@ -45,7 +45,7 @@ def get_leaderboard(request):
 			print ",,,,,,,,,,,j=",j
 			if(tuple_list1[j]>high):
 				high=tuple_list1[j]
-				high_i=jq
+				high_i=j
 		tmp_val=tuple_list1[i]
 		tuple_list1[i]=high
 		tuple_list1[high_i]=tmp_val
