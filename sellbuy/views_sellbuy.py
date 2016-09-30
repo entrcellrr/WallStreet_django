@@ -34,6 +34,8 @@ def current_priceAjax(request):
 		i=30
 		p1=mp.Process(name='fun_call',target=fun_call)
 		p1.start()
+		from django.db import connection
+		connection.close()
 
 	for o in data:
 		qty = ShareDetail.objects.values_list(str(o.name)).filter(username=request.user)
@@ -102,6 +104,8 @@ def UpdatePortfolio():
 			shareworth += float(getattr(o,str(sh.name))) * float(sh.currentprice)
 		UserNetWorth = float(o.money_in_hand) + shareworth
 		for x in range(0,Matrixr):
+			print "matrixr loop started"
+			print Matrix[x][0],o.username
 			if(str(Matrix[x][0])==o.username):
 				Matrix[x][Matrixc]=UserNetWorth
 	Matrixc+=1

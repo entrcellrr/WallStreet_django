@@ -9,7 +9,7 @@ class Share(models.Model):
     name=models.CharField(max_length=120,blank=True,null=True)
     describ=models.CharField(max_length=120,blank=True,null=True)
     currentprice=models.DecimalField(max_digits=7,decimal_places=2,default=1000.0000)
-    queries=models.PositiveSmallIntegerField(default=0)
+    queries=models.IntegerField(default=0)
 	
     def __str__(self):
         return self.name
@@ -21,39 +21,39 @@ class News(models.Model):
         return self.news
 class Timer(models.Model):
     name=models.CharField(max_length=120,blank=True,null=True)
-    time=models.PositiveSmallIntegerField(default=0)	
+    time=models.IntegerField(default=0)	
     def __str__(self):
         return self.name
 
 
 class ShareDetail(models.Model):
-	id=models.PositiveSmallIntegerField(primary_key='True')
+	id=models.IntegerField(primary_key='True')
 	username=models.CharField(max_length=120,blank=True,null=True)
-	money_in_hand=models.DecimalField(max_digits=10,decimal_places=2,default=100000.00)
-	Xaviers_School=models.PositiveSmallIntegerField(default=0)
-	Wayne_Enterprises=models.PositiveSmallIntegerField(default=0)
-	Walter_White_Inc=models.PositiveSmallIntegerField(default=0)
-	Umbrella_Corp=models.PositiveSmallIntegerField(default=0)
-	STAR_Labs=models.PositiveSmallIntegerField(default=0)
-	Stark_Industries=models.PositiveSmallIntegerField(default=0)
-	Skynet=models.PositiveSmallIntegerField(default=0)
-	SHIELD=models.PositiveSmallIntegerField(default=0)
-	Pearson_Hardman=models.PositiveSmallIntegerField(default=0)
-	Palmer_Tech=models.PositiveSmallIntegerField(default=0)
-	Oscorp_RnD=models.PositiveSmallIntegerField(default=0)
-	Olivanders_Wand=models.PositiveSmallIntegerField(default=0)
-	Monsters_Inc=models.PositiveSmallIntegerField(default=0)
-	LexCorp=models.PositiveSmallIntegerField(default=0)
-	Illuminati_Consolidations=models.PositiveSmallIntegerField(default=0)
-	Hammer_Tech=models.PositiveSmallIntegerField(default=0)
-	Gringotts_Bank=models.PositiveSmallIntegerField(default=0)
-	Evil_Inc=models.PositiveSmallIntegerField(default=0)
-	Daily_Planet=models.PositiveSmallIntegerField(default=0)
-	Buzzinga_Entertainment=models.PositiveSmallIntegerField(default=0)
-	Bajrang_Cafe=models.PositiveSmallIntegerField(default=0)
-	Bakers_Street_Findings=models.PositiveSmallIntegerField(default=0)
-	Ammunation_Pharma=models.PositiveSmallIntegerField(default=0)
-	ACME=models.PositiveSmallIntegerField(default=0)
+	money_in_hand=models.DecimalField(max_digits=14,decimal_places=2,default=100000.00)
+	Xaviers_School=models.IntegerField(default=0)
+	Wayne_Enterprises=models.IntegerField(default=0)
+	Walter_White_Inc=models.IntegerField(default=0)
+	Umbrella_Corp=models.IntegerField(default=0)
+	STAR_Labs=models.IntegerField(default=0)
+	Stark_Industries=models.IntegerField(default=0)
+	Skynet=models.IntegerField(default=0)
+	SHIELD=models.IntegerField(default=0)
+	Pearson_Hardman=models.IntegerField(default=0)
+	Palmer_Tech=models.IntegerField(default=0)
+	Oscorp_RnD=models.IntegerField(default=0)
+	Olivanders_Wand=models.IntegerField(default=0)
+	Monsters_Inc=models.IntegerField(default=0)
+	LexCorp=models.IntegerField(default=0)
+	Illuminati_Consolidations=models.IntegerField(default=0)
+	Hammer_Tech=models.IntegerField(default=0)
+	Gringotts_Bank=models.IntegerField(default=0)
+	Evil_Inc=models.IntegerField(default=0)
+	Daily_Planet=models.IntegerField(default=0)
+	Buzzinga_Entertainment=models.IntegerField(default=0)
+	Bajrang_Cafe=models.IntegerField(default=0)
+	Bakers_Street_Findings=models.IntegerField(default=0)
+	Ammunation_Pharma=models.IntegerField(default=0)
+	ACME=models.IntegerField(default=0)
 	
 	def __str__(self):
 		return self.username
