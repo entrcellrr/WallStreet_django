@@ -1,0 +1,29 @@
+
+body{font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+      font-size:18px;
+      background-color:white;
+	}
+	  
+
+
+.background1{
+	  /* background-image:url(../img/7.jpg);
+      
+	   background-repeat:no-repeat;
+	   background-position:100% 100%;
+	   background-size:cover;*/
+	   background-color:#bdbdbd ;
+       min-height:650px;
+}
+.foot{
+	background-color:#616161;
+}
+.background2{
+	  background-image:url(../img/10.jpg);
+      
+	   background-repeat:no-repeat;
+	   background-position:100% 100%;
+	   background-size:cover;
+	   background-color:#bdbdbd ;
+       min-height:650px;
+}

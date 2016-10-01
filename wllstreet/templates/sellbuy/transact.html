@@ -1,9 +1,20 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width , initial-scale=1.0,user-scalable=no"/>
+			<title>WALLSTREET</title>
+  <!-- CSS  -->
+	<!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ -->	<link href="/static/wallstreet_front/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="/static/wallstreet_front/css/animate.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="/static/wallstreet_front/css/style-esum-main.css" rel="stylesheet" type="text/css" />
+	<link rel="icon" type="image/png" href="images/favicon.png"/>
+</head>
+    
   <title>WALLSTREET</title>
-    <meta name="description" content="">
+   
   <script language="javascript" type="text/javascript">
 
 function popitup(url) {
@@ -25,11 +36,37 @@ function popitup(url) {
 </script>
 </head>
 <body onload="loadDoc()">
+<div class="navbar-fixed">
+	
+    <nav class=" black" role="navigation">
+     <div class="nav-wrapper container">
+
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+            <ul class="left hide-on-med-and-down">
+            <li><a href="#"><b>DEVELOPER</b></i></a></li>
+            </ul>
+      <a href="#" class="brand-logo center">WALLSTREET</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+            <ul class="right hide-on-med-and-down">
+      			<li><a href="#"><b>SETTINGS</b></a></li>
+				<li><a href="#"><b>REGISTER</b></a></li>
+			</ul>
+			<a href="#" data-activates ="mobile-demo" class="button-collapse" ><i class="material-icons">menu</i></a>
+  </div>	
+    </nav>
+    </div>
+    <nav class="grey darken-2" role="navigation">
+	<div class="nav-wrapper container">
+		<a href="#" class="brand-logo center">THE ENTREPRENEURSHIP CELL</a>
+		</div>
+	</nav>
+	
     
+ 
 <table height =5><tr><td>
-  <h3>Welcome {{ name }}</p></h3></td>
+  <h3>Welcome </p></h3></td>
   <td width =100%></td><td>
-  <h4><p>Acct Baln : {{ money }}</p></h4>
+  Acct Baln :{{ money }}
   </td>
 <table>
   <tr >
@@ -37,8 +74,8 @@ function popitup(url) {
       <table><tr><td>
 <form method="post" action=".">{% csrf_token %}
     <table>{{ form.as_table }}</table>
-       <h5>{{error}}</h5>
-       <h5> last updated:<div id="time"></div></h5>
+       {{error}}<br>
+       last updated:<div id="time"></div>
     
     <br><br>
 
@@ -46,9 +83,11 @@ function popitup(url) {
   <input type="submit" value="SELL" name = "sell"/>
        
 </form></td>
+
 <td width = 525></td>
 <td>
-<table  border=2><tr><td><div id="news">google has launched worlds 1st self driving cars</div></td></tr></table>
+<table  border=2><tr><td><!-- <div id="news">
+</div> --></td></tr></table>
 </td></tr></table>
     <table height =300 width =1100>
       <tr>
@@ -60,8 +99,11 @@ function popitup(url) {
   <table>
     <tr>
       <td>
+	 
         <table  border=2><tr><td>
-        <div id="demo"></div>
+        <div id="demo">
+
+</div>
         </td></tr></table>
       </td></tr>
       <tr><td>
@@ -74,10 +116,12 @@ function popitup(url) {
 </td>
 </tr>
 </table>
+
+
 <br>
 <br>
 
-<script src="/static/js/jquery-latest.js"></script>
+<script src="./js/jquery-latest.js"></script>
 <script>
 function loadDoc() {
     $.get('./current_price/', function(data) {
@@ -109,5 +153,56 @@ function loadNews(){
 </script>
   
     <br>
+	<footer class="page-footer grey darken-3">
+	
+          <div class="container">
+            <div class="row">
+              <div class="col l5 s12">
+                <h5 class="white-text">THE E-CELL</h5>
+                <p class="grey-text text-lighten-4">We are a team of members inspiring, innovating and inculcating the dreams of young entrepreneurs.</p>
+              </div>
+              <div class="col l4  s12">
+                <h5 class="white-text">DEVELOPERS TEAM</h5>
+                <ul>
+                  <li><a class="red-text text-darken" href="#!">ABHIK SARKAR</a></li>
+                  <li><a class="red-text text-darken" href="#!">SHRADDHA SINGH</a></li>
+                  <li><a class="red-text text-darken" href="#!">ADITYA</a></li>
+                  <li><a class="red-text" href="#!">A.K. ARVIND</a></li>
+                </ul>
+              </div>
+              <div class="col l3 s12">
+              
+          <h5 class="white-text">CONNECT WITH US</h5>
+		  <div class="social">
+          <!-- <ul>
+             <li><a href="https://www.facebook.com/ecellnitrr/" title="connect with us"><img src="images/facebook.png" alt="facebook" /></a></li>
+			 <li><a href="http://www.twitter.com/Ecell_NITRR" title="connect with us"><img src="images/twitter.png" alt="twitter" /></a></li>
+			 <li><a href="http://www.linkedin.com/in/e-cell-nit-raipur-a1682b122"title="connect with us"><img src="images/linkedin.png" alt="linkedin"/></a> </li>
+          </ul>
+         -->
+            </div>
+          </div>
+          </div>
+          </div>
+
+          <div class="footer-copyright black">
+            <div class="container">
+           <b>TEAM E-CELL @NITRR</b>
+            <a class="grey-text text-lighten-4 right" href="#!"><b>NIT RAIPUR</b></a>
+            </div>
+          </div>
+          
+        </footer>
+       
+       
+       <!--  Scripts-->
+
+  <script src="/static/wallstreet_front/js/jquery-latest.js"></script>
+  <script src="/static/wallstreet_front/js/materialize.js"></script>
+  <script src="/static/wallstreet_front/js/init.js"></script>
+       
+	
+	
 </body>
 </html>
+

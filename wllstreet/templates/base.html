@@ -5,8 +5,44 @@
 	<title>WALLSTREET</title>
     <meta name="description" content="">
   
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width , initial-scale=1.0,user-scalable=no"/>
+			<title>WALLSTREET</title>
+  <!-- CSS  -->
+	<!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ -->	<link href="/static/wallstreet_front/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="/static/wallstreet_front/css/animate.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="/static/wallstreet_front/css/style-esum-main.css" rel="stylesheet" type="text/css" />
+	<link rel="icon" type="image/png" href="images/favicon.png"/>
 </head>
 <body onload="loadDoc()">
+
+<div class="navbar-fixed">
+	
+    <nav class=" black" role="navigation">
+     <div class="nav-wrapper container">
+
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+            <ul class="left hide-on-med-and-down">
+            <li><a href="#"><b>DEVELOPER</b></i></a></li>
+            </ul>
+      <a href="#" class="brand-logo center">WALLSTREET</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+            <ul class="right hide-on-med-and-down">
+      			<li><a href="#"><b>SETTINGS</b></a></li>
+				<li><a href="#"><b>REGISTER</b></a></li>
+			</ul>
+			<a href="#" data-activates ="mobile-demo" class="button-collapse" ><i class="material-icons">menu</i></a>
+  </div>	
+    </nav>
+    </div>
+    <nav class="grey darken-2" role="navigation">
+	<div class="nav-wrapper container">
+		<a href="#" class="brand-logo center">THE ENTREPRENEURSHIP CELL</a>
+		</div>
+	</nav>
+
+
     {% block content%}
     {% endblock content%}
 </body>

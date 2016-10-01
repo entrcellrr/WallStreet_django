@@ -16,6 +16,7 @@ import numpy as np
 import multiprocessing as mp
 #from portfolio import views_portfolio as vp# import Matrix,Matrixr,Matrixc
 from sellbuy.WallStreet import SharePriceOutputWithoutNews as SPW
+from django.apps import apps
 i=-2
 userstr=''
 
@@ -121,6 +122,7 @@ def UpdatePortfolio():
 
 #from apscheduler.schedulers.background import BackgroundScheduler
 def printit(iter_count):
+	iter_count=int(iter_count/15)
 	#global userstr
 	#print "process="+str(multiprocessing.current_process().name)
 	global countMinute
@@ -128,7 +130,7 @@ def printit(iter_count):
 	timer=modelt.time
 	timer-=1
 	if timer<=-1:
-		timer=5
+		timer=15
 		countMinute+=0.5
 		if countMinute == 0.5:
 			#################################  to update portfolio
@@ -144,15 +146,24 @@ def printit(iter_count):
 		share_index=0
 		for o in share_querylist:
 			#(1,10) # returns a random integer
+
 			cp=o.currentprice
-			print "sh index",share_index," sh name",o.name
-			print iter_count
-			n = SPW(share_index,cp,iter_count/5)
-			print n
+			if(int(cp<2)):
+				cp=5
+			#print "sh index",share_index," sh name",o.name
+			#print iter_count
+			n = SPW(share_index,cp,iter_count)
+			
 			c=1.01#afterwards will be synce with news also
-			setattr(o,'currentprice',n*c)
+			new_price=float(n*float((float(1.0)+o.queries/1000)))
+			if(new_price<2):
+				new_price=5
+			print "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",cp ,n,new_price
+			setattr(o,'currentprice',new_price)
 			setattr(o,'queries',0)	
 			o.save()
+			currentshare=apps.get_model('portfolio',o.name)
+			currentshare.objects.create(x=iter_count,y=new_price)					
 			share_index+=1
 		#	print o.name
 		#share_querylist.save()

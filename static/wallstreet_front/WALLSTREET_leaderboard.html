@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)http://127.0.0.1:8000/leaderboard/ -->
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width , initial-scale=1.0,user-scalable=no"/>
+			<title>WALLSTREET</title>
+  <!-- CSS  -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="css/animate.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="css/style-esum-main.css" rel="stylesheet" type="text/css" />
+	<link rel="icon" type="image/png" href="images/favicon.png"/>
+
+  <title>WALLSTREET</title>
+</head>
+<body><bodym>
+<div class="navbar-fixed">
+	
+    <nav class=" black" role="navigation">
+     <div class="nav-wrapper container">
+
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+            <ul class="left hide-on-med-and-down">
+            <li><a href="#"><b>DEVELOPER</b></i></a></li>
+                <li ><a href="#" ><b>TRAIN</b></i></a></li>
+            </ul>
+      <a href="#" class="brand-logo center">WALLSTREET</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+            <ul class="right hide-on-med-and-down">
+      			<li><a href="#"><b>SETTINGS</b></a></li>
+				<li><a href="#"><b>REGISTER</b></a></li>
+			</ul>
+			<a href="#" data-activates ="mobile-demo" class="button-collapse" ><i class="material-icons">menu</i></a>
+  </div>	
+    </nav>
+    </div>
+    <nav class="grey darken-2" role="navigation">
+	<div class="nav-wrapper container">
+		<a href="#" class="brand-logo center">THE ENTREPRENEURSHIP CELL</a>
+		</div>
+	</nav>
+	<div class="background2">
+ 	 <div class= "section">
+		
+ 	 
+<div id="board"></div>
+<script src="./js/jquery-latest.js"></script>
+<script>
+setInterval(function(){
+     $.get('./get_leaderboard', function(data) {
+        $('#board').html(data);    
+        // if(data=='0')loadDoc();
+    });
+},1000);
+</script>
+
+</div>
+	 </div>
+
+
+</bodym>
+<footer class="page-footer grey darken-3">
+	
+          <div class="container">
+            <div class="row">
+              <div class="col l5 s12">
+                <h5 class="white-text">THE E-CELL</h5>
+                <p class="grey-text text-lighten-4">We are a team of members inspiring, innovating and inculcating the dreams of young entrepreneurs.</p>
+              </div>
+              <div class="col l4  s12">
+                <h5 class="white-text">DEVELOPERS TEAM</h5>
+                <ul>
+                  <li><a class="red-text text-darken" href="#!">ABHIK SARKAR</a></li>
+                  <li><a class="red-text text-darken" href="#!">SHRADDHA SINGH</a></li>
+                  <li><a class="red-text text-darken" href="#!">YASH BONDE</a></li>
+                  <li><a class="red-text text-darken" href="#!">ADITYA</a></li>
+                  <li><a class="red-text" href="#!">A.K. ARVIND</a></li>
+                </ul>
+              </div>
+              <div class="col l3 s12">
+              
+          <h5 class="white-text">CONNECT WITH US</h5>
+		  <div class="social">
+          <ul>
+             <li><a href="https://www.facebook.com/ecellnitrr/" title="connect with us"><img src="images/facebook.png" alt="facebook" /></a></li>
+			 <li><a href="http://www.twitter.com/Ecell_NITRR" title="connect with us"><img src="images/twitter.png" alt="twitter" /></a></li>
+			 <li><a href="http://www.linkedin.com/in/e-cell-nit-raipur-a1682b122"title="connect with us"><img src="images/linkedin.png" alt="linkedin"/></a> </li>
+          </ul>
+        
+            </div>
+          </div>
+          </div>
+          </div>
+
+          <div class="footer-copyright black">
+            <div class="container">
+			<b>TEAM E-CELL @NITRR</b>
+            <a class="grey-text text-lighten-4 right" href="#!"><b>NIT RAIPUR</b></a>
+            </div>
+          </div>
+          
+        </footer>
+       
+       
+       <!--  Scripts-->
+
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+       </body></html>

@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width , initial-scale=1.0,user-scalable=no"/>
+			<title>WALLSTREET</title>
+  <!-- CSS  -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="css/animate.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="css/style-esum-main.css" rel="stylesheet" type="text/css" />
+	<link rel="icon" type="image/png" href="images/favicon.png"/>
+</head>
+    
+  <title>WALLSTREET</title>
+   
+  <script language="javascript" type="text/javascript">
+
+function popitup(url) {
+    var leftPosition, topPosition;
+    //Allow for borders.
+    leftPosition = (window.screen.width / 2) - ((800 / 2) + 10);
+    //Allow for title and status bars.
+    topPosition = (window.screen.height / 2) - ((600 / 2) + 50);
+
+  newwindow=window.open(url,'name',"status=no,height=600,width=800,resizable=yes,left="
+    + leftPosition + ",top=" + topPosition + ",screenX=" + leftPosition + ",screenY="
+    + topPosition + ",toolbar=no,menubar=no,scrollbars=no,directories=no");
+
+  if (window.focus) {newwindow.focus()}
+  return false;
+}
+
+
+</script>
+</head>
+<body onload="loadDoc()">
+<div class="navbar-fixed">
+	
+    <nav class=" black" role="navigation">
+     <div class="nav-wrapper container">
+
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+            <ul class="left hide-on-med-and-down">
+            <li><a href="#"><b>DEVELOPER</b></i></a></li>
+                <li ><a href="#" ><b>TRAIN</b></i></a></li>
+            </ul>
+      <a href="#" class="brand-logo center">WALLSTREET</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+            <ul class="right hide-on-med-and-down">
+      			<li><a href="#"><b>SETTINGS</b></a></li>
+				<li><a href="#"><b>REGISTER</b></a></li>
+			</ul>
+			<a href="#" data-activates ="mobile-demo" class="button-collapse" ><i class="material-icons">menu</i></a>
+  </div>	
+    </nav>
+    </div>
+    <nav class="grey darken-2" role="navigation">
+	<div class="nav-wrapper container">
+		<a href="#" class="brand-logo center">THE ENTREPRENEURSHIP CELL</a>
+		</div>
+	</nav>
+	
+    
+ 
+<table height =5><tr><td>
+  <h3>Welcome </p></h3></td>
+  <td width =100%></td><td>
+  <h4><p>Acct Baln : 100000.00</p></h4>
+  </td>
+<table>
+  <tr >
+    <td>  
+      <table><tr><td>
+<form method="post" action="."><input type='hidden' name='csrfmiddlewaretoken' value='9DdprsEoyWeVs89TVWpqxtAaRQF9fDZN' />
+    <table><tr><th><label for="id_ShareDescrib">Sharedescrib:</label></th><td><select id="id_ShareDescrib" name="ShareDescrib" onChange="this.form.submit()">
+<option value="All" selected="selected">All</option>
+<option value="Consultants">Consultants</option>
+<option value="Entertainment">Entertainment</option>
+<option value="Finance">Finance</option>
+<option value="Foods">Foods</option>
+<option value="Logistics">Logistics</option>
+<option value="Media">Media</option>
+<option value="Misc">Misc</option>
+<option value="Pharma">Pharma</option>
+<option value="Tech">Tech</option>
+</select></td></tr>
+<tr><th><label for="id_ShareName">Sharename:</label></th><td><select id="id_ShareName" name="ShareName" onChange="this.form.submit()">
+<option value="Skynet">Skynet</option>
+<option value="Pearson_Hardman">Pearson_Hardman</option>
+<option value="Buzzinga_Entertainment">Buzzinga_Entertainment</option>
+<option value="Illuminati_Consolidations">Illuminati_Consolidations</option>
+<option value="Gringotts_Bank">Gringotts_Bank</option>
+<option value="Bajrang_Cafe">Bajrang_Cafe</option>
+<option value="Olivanders_Wand">Olivanders_Wand</option>
+<option value="Daily_Planet">Daily_Planet</option>
+<option value="ACME" selected="selected">ACME</option>
+<option value="SHIELD">SHIELD</option>
+<option value="Monsters_Inc">Monsters_Inc</option>
+<option value="Xaviers_School">Xaviers_School</option>
+<option value="Evil_Inc">Evil_Inc</option>
+<option value="Walter_White_Inc">Walter_White_Inc</option>
+<option value="Ammunation_Pharma">Ammunation_Pharma</option>
+<option value="Bakers_Street_Findings">Bakers_Street_Findings</option>
+<option value="Palmer_Tech">Palmer_Tech</option>
+<option value="Oscorp_RnD">Oscorp_RnD</option>
+<option value="Stark_Industries">Stark_Industries</option>
+<option value="STAR_Labs">STAR_Labs</option>
+<option value="Umbrella_Corp">Umbrella_Corp</option>
+<option value="Hammer_Tech">Hammer_Tech</option>
+<option value="Wayne_Enterprises">Wayne_Enterprises</option>
+<option value="LexCorp">LexCorp</option>
+</select></td></tr>
+<tr><th><label for="id_QTY_in_hand">Qty in hand:</label></th><td><input disabled="disabled" id="id_QTY_in_hand" name="QTY_in_hand" size="7" title="Qty in hand" type="text" value="0" /></td></tr>
+<tr><th><label for="id_Current_Price">Current price:</label></th><td><input disabled="disabled" id="id_Current_Price" name="Current_Price" size="7" title="Currnt_price" type="text" value="1000.00" /></td></tr>
+<tr><th><label for="id_Qty">Qty:</label></th><td><input id="id_Qty" name="Qty" size="7" title="QTY_QUERY" type="text" value="0" /></td></tr></table>
+       <h5></h5>
+       <h5> last updated:<div id="time"></div></h5>
+    
+    <br><br>
+
+<input type="submit" value="BUY" name="buy" />
+  <input type="submit" value="SELL" name = "sell"/>
+       
+</form></td>
+
+<td width = 525></td>
+<td>
+<table  border=2><tr><td><div id="news">
+<marquee onmouseover="this.stop()" onmouseout="this.start()" direction="up" height =40 scrolldelay=300><table><tr><td>Fall in market amid Recession fears </td></tr><tr><td>People loving new innovation</td></tr><tr><td>New product unable to sell</td></tr><tr><td>New president appointed</td></tr><tr><td>Business plan modified</td></tr><tr><td>New CEO unable to bring innovation</td></tr><tr><td>to introduce low cost composite cars</td></tr><tr><td>receives USFDA Approval for new anti-infection drug</td></tr><tr><td>Sergie Brain introduces loogle glasses</td></tr><tr><td>US plans state incentives to Indian software companies</td></tr><tr><td>sells 80% of its dollar bonds</td></tr><tr><td>to hike its call rates</td></tr><tr><td>New Budget turns out a boost industry</td></tr><tr><td>tragic fall in shares</td></tr><tr><td>New Technology to remain dominant technology in near future even in Metros : Analyst </td></tr><tr><td>World class Trade centre to be set up in Hyderabad</td></tr><tr><td>lashed out of domestic Market.</td></tr><tr><td>buys new unit in Ireland</td></tr><tr><td>plans enormous brand expansion</td></tr><tr><td>gets 10 year outsourcing contract from Mumbai airport</td></tr><tr><td>Excise duty on the Product to be reduced</td></tr><tr><td>ready to launch New Flagship Product</td></tr><tr><td>net profit down by 38% in third quarter</td></tr><tr><td>net profit up by 18% in third quarter</td></tr><tr><td>offers freebies to revive sales</td></tr><tr><td>failing business model</td></tr><tr><td>to raise 2046 k capital this month</td></tr><tr><td>Government plans to allocate more funds for this sector</td></tr><tr><td>Festive Season Brings New hope to Market </td></tr><tr><td>subsidiaries sign financial agreement for two new projects</td></tr><tr><td>to lay off staff</td></tr><tr><td>Bought new game changing patent to revolutionize market</td></tr><tr><td>sold its patent for $20Million</td></tr><tr><td>extends gains by 2% on buzz of acquisition</td></tr><tr><td>faces possible EU privacy crackdown</td></tr><tr><td>union leaders plan hunger strike for higher wages</td></tr><tr><td>Upgrades own brand Marketing Strategy</td></tr><tr><td>announced expansion of its retail in Hyderabad</td></tr><tr><td>gains further n  buzz of acquisition</td></tr><tr><td>tragic death of CEO shocks company</td></tr></table></marquee></div></td></tr></table>
+</td></tr></table>
+    <table height =300 width =1100>
+      <tr>
+        <td>
+        </td></tr></table>
+
+    </td>
+    <td>
+  <table>
+    <tr>
+      <td>
+	 
+        <table  border=2><tr><td>
+        <div id="demo">
+
+<table><tr><td><a href='./share_graph/ACME' onclick="return popitup('./share_graph/ACME')">ACME</a></td><td>1000.00</td><td width=25 align='center'>0</td></tr><tr><td><a href='./share_graph/Ammunation_Pharma' onclick="return popitup('./share_graph/Ammunation_Pharma')">Ammunation_Pharma</a></td><td>1000.00</td><td width=25 align='center'>0</td></tr><tr><td><a href='./share_graph/Bakers_Street_Findings' onclick="return popitup('./share_graph/Bakers_Street_Findings')">Bakers_Street_Findings</a></td><td>1000.00</td><td width=25 align='center'>0</td></tr><tr><td><a href='./share_graph/Bajrang_Cafe' onclick="return popitup('./share_graph/Bajrang_Cafe')">Bajrang_Cafe</a></td><td>1000.00</td><td width=25 align='center'>0</td></tr><tr><td><a href='./share_graph/Buzzinga_Entertainment' onclick="return popitup('./share_graph/Buzzinga_Entertainment')">Buzzinga_Entertainment</a></td><td>971.00</td><td width=25 align='center'>0</td></tr><tr><td><a href='./share_graph/Daily_Planet' onclick="return popitup('./share_graph/Daily_Planet')">Daily_Planet</a></td><td>1000.00</td><td width=25 align='center'>0</td></tr><tr><td><a href='./share_graph/Evil_Inc' onclick="return popitup('./share_graph/Evil_Inc')">Evil_Inc</a></td><td>1000.00</td><td width=25 align='center'>0</td></tr><tr><td><a href='./share_graph/Gringotts_Bank' onclick="return popitup('./share_graph/Gringotts_Bank')">Gringotts_Bank</a></td><td>1000.00</td><td width=25 align='center'>0</td></tr><tr><td><a href='./share_graph/Hammer_Tech' onclick="return popitup('./share_graph/Hammer_Tech')">Hammer_Tech</a></td><td>1000.00</td><td width=25 align='center'>0</td></tr><tr><td><a href='./share_graph/Illuminati_Consolidations' onclick="return popitup('./share_graph/Illuminati_Consolidations')">Illuminati_Consolidations</a></td><td>1000.00</td><td width=25 align='center'>0</td></tr><tr><td><a href='./share_graph/LexCorp' onclick="return popitup('./share_graph/LexCorp')">LexCorp</a></td><td>1000.00</td><td width=25 align='center'>0</td></tr><tr><td><a href='./share_graph/Monsters_Inc' onclick="return popitup('./share_graph/Monsters_Inc')">Monsters_Inc</a></td><td>1000.00</td><td width=25 align='center'>0</td></tr><tr><td><a href='./share_graph/Olivanders_Wand' onclick="return popitup('./share_graph/Olivanders_Wand')">Olivanders_Wand</a></td><td>1000.00</td><td width=25 align='center'>0</td></tr><tr><td><a href='./share_graph/Oscorp_RnD' onclick="return popitup('./share_graph/Oscorp_RnD')">Oscorp_RnD</a></td><td>1000.00</td><td width=25 align='center'>0</td></tr><tr><td><a href='./share_graph/Palmer_Tech' onclick="return popitup('./share_graph/Palmer_Tech')">Palmer_Tech</a></td><td>1000.00</td><td width=25 align='center'>0</td></tr><tr><td><a href='./share_graph/Pearson_Hardman' onclick="return popitup('./share_graph/Pearson_Hardman')">Pearson_Hardman</a></td><td>1048.00</td><td width=25 align='center'>0</td></tr><tr><td><a href='./share_graph/SHIELD' onclick="return popitup('./share_graph/SHIELD')">SHIELD</a></td><td>1000.00</td><td width=25 align='center'>0</td></tr><tr><td><a href='./share_graph/Skynet' onclick="return popitup('./share_graph/Skynet')">Skynet</a></td><td>1072.00</td><td width=25 align='center'>0</td></tr><tr><td><a href='./share_graph/Stark_Industries' onclick="return popitup('./share_graph/Stark_Industries')">Stark_Industries</a></td><td>1000.00</td><td width=25 align='center'>0</td></tr><tr><td><a href='./share_graph/STAR_Labs' onclick="return popitup('./share_graph/STAR_Labs')">STAR_Labs</a></td><td>1000.00</td><td width=25 align='center'>0</td></tr><tr><td><a href='./share_graph/Umbrella_Corp' onclick="return popitup('./share_graph/Umbrella_Corp')">Umbrella_Corp</a></td><td>1000.00</td><td width=25 align='center'>0</td></tr><tr><td><a href='./share_graph/Walter_White_Inc' onclick="return popitup('./share_graph/Walter_White_Inc')">Walter_White_Inc</a></td><td>1000.00</td><td width=25 align='center'>0</td></tr><tr><td><a href='./share_graph/Wayne_Enterprises' onclick="return popitup('./share_graph/Wayne_Enterprises')">Wayne_Enterprises</a></td><td>1000.00</td><td width=25 align='center'>0</td></tr><tr><td><a href='./share_graph/Xaviers_School' onclick="return popitup('./share_graph/Xaviers_School')">Xaviers_School</a></td><td>1000.00</td><td width=25 align='center'>0</td></tr></table></div>
+        </td></tr></table>
+      </td></tr>
+      <tr><td>
+       <div id="timer">refresh in : 20</div>
+<button type="button" onclick="loadDoc()">refresh</button>
+
+      </td>
+    </tr>
+  </table>
+</td>
+</tr>
+</table>
+
+
+<br>
+<br>
+
+<script src="./js/jquery-latest.js"></script>
+<script>
+function loadDoc() {
+    $.get('./current_price/', function(data) {
+        $('#demo').html(data);    });
+  var today = new Date();
+document.getElementById('time').innerHTML=today;
+
+loadNews();
+}
+  
+ 
+//#################################################################################################
+setInterval(function(){
+     $.get('./timer_update', function(data) {
+        $('#timer').html('refresh in : '+data+' sec');    
+        if(data=='0')loadDoc();
+    });
+},1000);
+//################################################################################################3
+function loadNews(){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {var response_data=xhttp.responseText;
+      document.getElementById("news").innerHTML = response_data;
+  
+  };
+  xhttp.open("GET", "./current_news/", true);
+  xhttp.send();}
+
+</script>
+  
+    <br>
+	<footer class="page-footer grey darken-3">
+	
+          <div class="container">
+            <div class="row">
+              <div class="col l5 s12">
+                <h5 class="white-text">THE E-CELL</h5>
+                <p class="grey-text text-lighten-4">We are a team of members inspiring, innovating and inculcating the dreams of young entrepreneurs.</p>
+              </div>
+              <div class="col l4  s12">
+                <h5 class="white-text">DEVELOPERS TEAM</h5>
+                <ul>
+                  <li><a class="red-text text-darken" href="#!">ABHIK SARKAR</a></li>
+                  <li><a class="red-text text-darken" href="#!">SHRADDHA SINGH</a></li>
+                  <li><a class="red-text text-darken" href="#!">YASH BONDE</a></li>
+                  <li><a class="red-text text-darken" href="#!">ADITYA</a></li>
+                  <li><a class="red-text" href="#!">A.K. ARVIND</a></li>
+                </ul>
+              </div>
+              <div class="col l3 s12">
+              
+          <h5 class="white-text">CONNECT WITH US</h5>
+		  <div class="social">
+          <ul>
+             <li><a href="https://www.facebook.com/ecellnitrr/" title="connect with us"><img src="images/facebook.png" alt="facebook" /></a></li>
+			 <li><a href="http://www.twitter.com/Ecell_NITRR" title="connect with us"><img src="images/twitter.png" alt="twitter" /></a></li>
+			 <li><a href="http://www.linkedin.com/in/e-cell-nit-raipur-a1682b122"title="connect with us"><img src="images/linkedin.png" alt="linkedin"/></a> </li>
+          </ul>
+        
+            </div>
+          </div>
+          </div>
+          </div>
+
+          <div class="footer-copyright black">
+            <div class="container">
+           <b>TEAM E-CELL @NITRR</b>
+            <a class="grey-text text-lighten-4 right" href="#!"><b>NIT RAIPUR</b></a>
+            </div>
+          </div>
+          
+        </footer>
+       
+       
+       <!--  Scripts-->
+
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+       
+	
+	
+</body>
+</html>
+
