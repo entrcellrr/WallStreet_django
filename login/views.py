@@ -99,8 +99,9 @@ flag=0
 def home(request):
     user = UserDetail.objects.get(name=request.user)
     name = user.name
+    return HttpResponseRedirect('/transact')
     return render_to_response(
-        'login/home.html',
+        'sellbuy/transact.html',
         {'name': name}
         )
 

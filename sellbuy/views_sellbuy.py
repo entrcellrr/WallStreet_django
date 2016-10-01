@@ -73,7 +73,7 @@ def current_queries(request):
 	data=Share.objects.all()
 	str_queries='<table>'
 	for o in data:
-		str_queries+='<tr><td>'+str(o.name)+'</td><td>'+str(o.queries)+'</td></tr>'
+		str_queries+='<tr><td>'+str(o.name)+'</td><td>'+str(o.queries)+'</td><td>'+str(o.queries_total)+'</td></tr>'
 	str_queries+='</table>'
 	return HttpResponse(str_queries)
 
@@ -155,12 +155,16 @@ def printit(iter_count):
 			n = SPW(share_index,cp,iter_count)
 			
 			c=1.01#afterwards will be synce with news also
-			new_price=float(n*float((float(1.0)+o.queries/1000)))
+			queries_total=float(o.queries_total)
+			if(queries_total)<1:
+				queries_total=1;
+			new_price=float(n*(1+(1/2)*float((o.queries/queries_total))))
 			if(new_price<2):
 				new_price=5
 			print "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",cp ,n,new_price
 			setattr(o,'currentprice',new_price)
-			setattr(o,'queries',0)	
+			setattr(o,'queries',0)
+			setattr(o,'queries_total',0)	
 			o.save()
 			currentshare=apps.get_model('portfolio',o.name)
 			currentshare.objects.create(x=iter_count,y=new_price)					
@@ -238,6 +242,9 @@ def sellbuyhome(request):
 				
 					setattr(user_query,'money_in_hand',money-(share_price*qty1))
 					user_query.save()
+					queries_total=share_query.queries_total
+					queries_total=queries_total+qty1
+					setattr(share_query,'queries_total',queries_total)
 					setattr(share_query,'queries',qty1+qty_share_query)
 					share_query.save()
 					#print "user money"+str(user_query.money_in_hand)
@@ -251,7 +258,10 @@ def sellbuyhome(request):
 					setattr(user_query,name_return,qty2-qty1)
 					setattr(user_query,'money_in_hand',money+share_price*qty1)
 					user_query.save()
+					queries_total=share_query.queries_total
+					queries_total=queries_total+qty1
 					setattr(share_query,'queries',qty_share_query-qty1)
+					setattr(share_query,'queries_total',queries_total)
 					share_query.save()
 					error='success'
 				else:

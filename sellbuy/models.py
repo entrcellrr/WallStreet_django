@@ -10,6 +10,7 @@ class Share(models.Model):
     describ=models.CharField(max_length=120,blank=True,null=True)
     currentprice=models.DecimalField(max_digits=7,decimal_places=2,default=1000.0000)
     queries=models.IntegerField(default=0)
+    queries_total=models.IntegerField(default=0)
 	
     def __str__(self):
         return self.name
@@ -29,7 +30,7 @@ class Timer(models.Model):
 class ShareDetail(models.Model):
 	id=models.IntegerField(primary_key='True')
 	username=models.CharField(max_length=120,blank=True,null=True)
-	money_in_hand=models.DecimalField(max_digits=14,decimal_places=2,default=100000.00)
+	money_in_hand=models.DecimalField(max_digits=20,decimal_places=2,default=10000.00)
 	Xaviers_School=models.IntegerField(default=0)
 	Wayne_Enterprises=models.IntegerField(default=0)
 	Walter_White_Inc=models.IntegerField(default=0)

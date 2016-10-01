@@ -24,7 +24,7 @@ def get_leaderboard(request):
 		#print o.username,UserNetWorth
 		#tuple_list.append(tuple({int(UserNetWorth),str(o.username)}))
 		tuple_list1.append(UserNetWorth)
-		print UserNetWorth
+		print "networth=",UserNetWorth
 		tuple_list2.append(str(o.username))
 		print o.username
 		tuple_list3.append(count)
@@ -53,7 +53,7 @@ def get_leaderboard(request):
 		tuple_list3[i]=tuple_list3[high_i]
 		tuple_list3[high_i]=tmp_val
 	ans="<table border=3>"
-	for i in range(2):
+	for i in range(10):
 		print "tuple_list3[i]=",tuple_list3[i]
 		print "tuple_list2[0]=",tuple_list2[0]
 		print "tuple_list2[1]=",tuple_list2[1]
