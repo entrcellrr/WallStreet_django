@@ -152,13 +152,14 @@ def printit(iter_count):
 				cp=5
 			#print "sh index",share_index," sh name",o.name
 			#print iter_count
-			n = SPW(share_index,cp,iter_count)
+			n = SPW(share_index,float(cp)*float(1.1),iter_count)
+			#n=n*1.09
 			
 			c=1.01#afterwards will be synce with news also
 			queries_total=float(o.queries_total)
 			if(queries_total)<1:
 				queries_total=1;
-			new_price=float(n*(1+(1/2)*float((o.queries/queries_total))))
+			new_price=float(n*(1+(1/5)*float((o.queries/queries_total))))
 			if(new_price<2):
 				new_price=5
 			print "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",cp ,n,new_price
